@@ -12,28 +12,16 @@ export class AuthService extends ApiService {
     super();
   }
 
-  whoAmI() {
+  login(data: any) {
     return this._get<any>('user/whoami').toPromise();
   }
 
-  set me(value) {
-    this._me = value;
+  register(data: any) {
+    return this._get<any>('user/whoami').toPromise();
   }
 
-  get me() {
-    return this._me;
-  }
-
-  isTeacher() {
-    return this.me.role == 'Teacher';
-  }
-
-  isStudent() {
-    return this.me.role == 'Student';
-  }
-
-  isPrincipal() {
-    return this.me.role == 'Principal';
+  hasToken(): boolean {
+    return !!localStorage.getItem('token');
   }
 
   async logout() {
