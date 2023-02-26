@@ -1,0 +1,12 @@
+:host ::ng-deep {
+  .p-image-mask {
+    > div {
+      overflow: auto;
+
+      img {
+        transform-origin: right top;
+        background: transparent url("../../../../assets/images/loading-spinner.gif") center center no-repeat;
+      }
+    }
+  }
+}

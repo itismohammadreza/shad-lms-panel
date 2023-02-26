@@ -1,0 +1,21 @@
+:host {
+  display: block;
+
+  .empty-wrapper {
+    text-align: center;
+
+    .empty-icon {
+      i {
+        font-size: 3.5rem;
+      }
+
+      img {
+        max-width: 120px;
+      }
+    }
+
+    .empty-title {
+      margin-top: 1.5rem;
+    }
+  }
+}

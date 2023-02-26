@@ -1,0 +1,29 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$blue: #88ace2 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #fb7777 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffe5a1 !default;
+$green: #3EB36E !default;
+$teal: #20c997 !default;
+$cyan: #109cf1 !default;
+$shad: #3cc6a5 !default;
+
+$primary: $shad !default;
+$primary-darken: #33a88c !default;
+$primary-lighten: #43e1b8 !default;
+$secondary: #eaecf4 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;

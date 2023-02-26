@@ -1,0 +1,28 @@
+<p-tabView [(activeIndex)]="activeTab" *ngIf="exam" (onChange)="onChangeTab($event)">
+  <p-tabPanel *ngFor="let file of exam.files" [header]="file.question_file.name.split('.')[0]">
+    <div class="slider-wrapper d-flex align-items-center justify-content-between">
+      <ng-button
+        class="ml-1"
+        size="sm"
+        [async]="false"
+        [disabled]="(fileData.currentPage+1) == fileData.pagesCount"
+        icon="pi pi-chevron-right"
+        (onClick)="getNextExamFile()">
+      </ng-button>
+      <ng-image width="100%" [preview]="true" [src]="fileData.currentUrl"></ng-image>
+      <ng-button
+        class="mr-1"
+        size="sm"
+        [async]="false"
+        [disabled]="fileData.currentPage == 0"
+        icon="pi pi-chevron-left"
+        (onClick)="getPrevExamFile()">
+      </ng-button>
+    </div>
+    <div class="text-center font-bold mt-3">
+      {{fileData.pagesCount}}
+      /
+      {{fileData.currentPage + 1}}
+    </div>
+  </p-tabPanel>
+</p-tabView>

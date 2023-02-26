@@ -1,0 +1,42 @@
+<p-sidebar
+  position="bottom"
+  [appendTo]="appendTo"
+  [visible]="visible"
+  [style]="style"
+  [styleClass]="styleClass"
+  [blockScroll]="blockScroll"
+  [baseZIndex]="baseZIndex"
+  [autoZIndex]="autoZIndex"
+  [modal]="modal"
+  [dismissible]="dismissible"
+  [showCloseIcon]="false"
+  [transitionOptions]="transitionOptions"
+  [closeOnEscape]="closeOnEscape"
+  (onShow)="_onShow()"
+  (onHide)="_onHide()">
+  <div class="bottom-sheet-wrapper">
+    <div class="header px-3 py-2 d-flex align-items-center justify-content-between w-100"
+         *ngIf="header || showCloseIcon || headerTemplate">
+      <ng-container *ngIf="headerTemplate;else alternativeTitle">
+        <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+      </ng-container>
+      <ng-template #alternativeTitle>
+        <h5>{{header}}</h5>
+      </ng-template>
+      <ng-button
+        *ngIf="showCloseIcon"
+        [rounded]="true"
+        appearance="text"
+        icon="pi pi-times"
+        (onClick)="_onHide()">
+      </ng-button>
+    </div>
+    <div class="content py-3" [class.px-3]="gutter">
+      <ng-content></ng-content>
+    </div>
+    <div class="footer p-3" *ngIf="footerTemplate">
+      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    </div>
+  </div>
+</p-sidebar>
+

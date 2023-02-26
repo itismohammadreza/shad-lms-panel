@@ -1,0 +1,64 @@
+<div [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float'
+    }" class="input-text-wrapper">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       [addonSize]="inputSize"
+       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
+       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
+    <div [ngClass]="{
+      'p-float-label': label && labelPos == 'float',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
+      'p-inputtext-sm': inputSize == 'sm',
+      'p-inputtext-lg': inputSize == 'lg',
+      'p-input-filled': filled
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <input
+        pInputText
+        [(ngModel)]="value"
+        [attr.id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [attr.maxlength]="maxlength"
+        [attr.placeholder]="placeholder"
+        [attr.type]="type"
+        [attr.inputmode]="inputMode"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [pKeyFilter]="keyFilter"
+        (blur)="_onBlur()"
+        (change)="_onChange($event)"
+        (click)="emitter('onClick', $event)"
+        (focus)="emitter('onFocus', $event)"
+        (input)="_onInput($event)"
+        (keydown)="_onKeyDown($event)"
+        (keyup)="_onKeyUp($event)"/>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)" class="p-error">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>
+

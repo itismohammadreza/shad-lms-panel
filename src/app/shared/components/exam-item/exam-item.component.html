@@ -1,0 +1,28 @@
+<div class="exam-item-wrapper">
+  <ng-container *ngIf="startRemainingTime as result">
+    <div class="card-badge" [ngClass]="'card-badge-'+ (exam.is_active ? result.cssClass : 'dark')">
+      <div class="card-badge-title">{{result.time}}</div>
+      <div class="card-badge-desc">{{result.label}}</div>
+    </div>
+  </ng-container>
+  <div class="card-content">
+    <div class="row align-items-center no-gutters">
+      <div class="col-8">
+        <div class="card-title font-bold mb-0">{{exam.title}}
+          <span *ngIf="exam.has_complete" class="bg-success text-white p-1 rounded">انجام شده</span>
+        </div>
+        <div class="teacher-info" *ngIf="isPrincipal()">
+          معلم : {{exam.teacher}}
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-left small">
+          <span class="px-3 py-2 tag rounded-pill">{{exam.type | translate}}</span>
+          <div class="card-desc ng-ltr">{{exam.start_time}}            <span
+            *ngIf="exam.type == 'Homework'"> - {{exam.end_time}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

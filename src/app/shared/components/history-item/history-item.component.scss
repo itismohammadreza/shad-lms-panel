@@ -1,0 +1,20 @@
+@import "mixins";
+
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border-radius: 0.5rem;
+
+  &.active {
+    border-color: $primary;
+    background-color: #f2fffc;
+  }
+}
+
+.tag {
+  background-color: #ececec;
+  display: inline-block;
+}

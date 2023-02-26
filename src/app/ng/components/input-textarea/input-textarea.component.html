@@ -1,0 +1,62 @@
+<div [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float'
+    }" class="input-textarea-wrapper">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       (onAfterBtnClick)="emitter('onAfterBtnClick',$event)"
+       (onBeforeBtnClick)="emitter('onBeforeBtnClick',$event)">
+    <div [ngClass]="{
+      'p-float-label': label && labelPos == 'float',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
+      'p-input-filled': filled
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <textarea
+        pInputTextarea
+        [(ngModel)]="value"
+        [attr.id]="inputId"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [attr.maxlength]="maxlength"
+        [attr.placeholder]="placeholder"
+        [autoResize]="autoResize"
+        [cols]="cols"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [rows]="rows"
+        [style.resize]="resize"
+        (blur)="_onBlur()"
+        (change)="_onChange($event)"
+        (focus)="emitter('onFocus', $event)"
+        (input)="_onInput($event)"
+        (keydown)="_onKeyDown($event)"
+        (keyup)="_onKeyUp($event)"
+        (onResize)="_onResize($event)"
+      ></textarea>
+      <label *ngIf="label && labelPos == 'float'" [attr.for]="inputId">
+        {{ label }}
+      </label>
+    </div>
+  </div>
+  <label
+    class="fix-label align-self-start"
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.width.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message small">{{ hint }}</div>
+  <div class="message small">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)" class="p-error">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

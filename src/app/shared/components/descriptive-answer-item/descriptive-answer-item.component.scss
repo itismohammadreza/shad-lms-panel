@@ -1,0 +1,10 @@
+@import "mixins";
+
+.card {
+  cursor: pointer;
+
+  &.is-selected {
+    background-color: rgba($primary, .2);
+    border-color: rgba($primary, .2);
+  }
+}
