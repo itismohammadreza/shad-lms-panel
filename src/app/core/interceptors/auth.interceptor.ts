@@ -7,7 +7,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     const clonedReq = request.clone({
-      url: !request.url.includes('download') ? `${request.url}/` : request.url,
+      url: `${request.url}/`,
       setHeaders: {
         Authorization: `Bearer ${token}`,
       },
