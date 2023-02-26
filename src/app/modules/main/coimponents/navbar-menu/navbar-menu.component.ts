@@ -1,16 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {LanguageChecker} from '@core/utils';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ng-navbar-menu',
   templateUrl: './navbar-menu.component.html',
   styleUrls: ['./navbar-menu.component.scss']
 })
-export class NavbarMenuComponent extends LanguageChecker implements OnInit {
-  constructor() {
-    super();
-  }
-
+export class NavbarMenuComponent implements OnInit {
   ngOnInit() {
   }
 }
