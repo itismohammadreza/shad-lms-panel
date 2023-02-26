@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NgAllModule} from '@ng/all.module';
-import {TranslateModule} from '@ngx-translate/core';
 
 import {COMPONENTS} from '.';
 
@@ -13,7 +12,6 @@ import {COMPONENTS} from '.';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    TranslateModule.forChild(),
     RouterModule,
     NgAllModule.forRoot({ripple: true}),
   ],
@@ -22,7 +20,6 @@ import {COMPONENTS} from '.';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    TranslateModule,
     NgAllModule,
   ]
 })
