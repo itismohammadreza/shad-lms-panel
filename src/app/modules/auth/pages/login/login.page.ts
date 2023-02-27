@@ -19,7 +19,7 @@ export class LoginPage {
   }
 
   async onSubmit(callback: any) {
-    if (this.form.valid) {
+    if (this.form.invalid) {
       callback()
       return;
     }

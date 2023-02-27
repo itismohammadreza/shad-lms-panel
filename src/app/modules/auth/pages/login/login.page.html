@@ -1,23 +1,27 @@
 <form class="form-row justify-content-center" [formGroup]="form">
   <div class="p-4 box rounded-lg shadow">
-    <ng-logo class="text-center mb-2"></ng-logo>
-    <h3 class="text-center">ورود</h3>
+    <h4>ورود</h4>
+    <small class="d-block text-muted mb-4">برای ورود نام کاربری و رمز عبور خود را به درستی وارد کنید</small>
     <ng-input-text
+      class="mb-3"
       formControlName="email"
+      labelPos="fix-top"
       [showRequiredStar]="false"
       icon="pi pi-user"
-      placeholder="نام کاربری"
+      label="نام کاربری"
       [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
     ></ng-input-text>
     <ng-input-text
+      class="mb-3"
       type="password"
       icon="pi pi-key"
+      labelPos="fix-top"
       [showRequiredStar]="false"
       formControlName="password"
-      placeholder="رمز عبور"
+      label="رمز عبور"
       [validation]="{'required':'این فیلد الزامیست.'}"
     ></ng-input-text>
-    <ng-checkbox formControlName="rememberMe" label="مرا بخاطر بسپار"></ng-checkbox>
+    <a class="d-block mb-5" routerLink="">فراموشی رمز عبور</a>
     <ng-button
       [async]="true"
       [full]="true"
@@ -25,9 +29,5 @@
       label="ورود"
       (onClickAsync)="onSubmit($event)"
     ></ng-button>
-    <small class="text-muted mt-3 text-center">
-      حساب کاربری ندارید؟
-      <a class="text-decoration-none" routerLink="/auth/register"> ثبت نام کنید</a>
-    </small>
   </div>
 </form>
