@@ -52,7 +52,7 @@ export class InputTextComponent implements OnInit, AfterViewInit, ControlValueAc
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = 'sm';
   @Input() readonly: boolean;
   @Input() disabled: boolean;
   @Input() maxlength: number;
