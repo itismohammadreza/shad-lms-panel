@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanDeactivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angular/router';
 import {OverlayService} from "@ng/services";
-import {Location} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
