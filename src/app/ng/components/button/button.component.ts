@@ -29,7 +29,7 @@ export class ButtonComponent implements OnChanges, AfterContentInit {
   @Input() color: NgColor = 'primary';
   @Input() full: boolean;
   @Input() badgeColor: NgColor = 'primary';
-  @Input() size: NgSize = 'md';
+  @Input() size: NgSize = 'sm';
   @Input() async: boolean;
   @Input() newLabel: string;
   @Input() newIcon: string;
