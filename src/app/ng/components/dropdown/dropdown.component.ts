@@ -59,7 +59,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize = 'md';
+  @Input() inputSize: NgSize = 'sm';
   // native properties
   @Input() options: any[];
   @Input() optionLabel: string = 'label';
