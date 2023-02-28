@@ -1,0 +1,9 @@
+p-card .p-card {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+p-card .p-card,
+ng-dropdown p-dropdown .p-dropdown,
+ng-button p-button button.p-button {
+  border-radius: 1rem;
+}
