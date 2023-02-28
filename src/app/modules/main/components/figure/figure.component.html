@@ -1,0 +1,9 @@
+<div *ngIf="layout == 'vertical'" class="figure border p-4 text-center w-100">
+  <h6 class="text-muted">{{title}}</h6>
+  <h4 class="mb-0">{{sub || '-'}}</h4>
+</div>
+
+<div *ngIf="layout == 'horizontal'" class="figure border p-4 text-center w-100 justify-content-around d-flex align-items-center">
+  <h6 class="text-muted">{{title}}</h6>
+  <h4 class="mb-0">{{sub || '-'}}</h4>
+</div>

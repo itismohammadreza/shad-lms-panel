@@ -5,9 +5,11 @@ import {DashboardPage} from "@modules/main/pages/dashboard/dashboard.page";
 import {ExamPage} from "@modules/main/pages/exam/exam.page";
 import {HomeworkPage} from "@modules/main/pages/homework/homework.page";
 import {TutorialPage} from "@modules/main/pages/tutorial/tutorial.page";
+import {FigureComponent} from "@modules/main/components/figure/figure.component";
 
 export const COMPONENTS: Type<any>[] = [
   NavbarMenuComponent,
+  FigureComponent,
   MainPage,
   DashboardPage,
   ExamPage,
