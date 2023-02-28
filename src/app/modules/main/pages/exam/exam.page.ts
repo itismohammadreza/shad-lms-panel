@@ -11,10 +11,9 @@ export class ExamPage implements OnInit {
   }
 
   stackedData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['تهران', 'اصفهان', 'شیراز', 'اردبیل', 'قم', 'تبریز', 'مشهد'],
     datasets: [{
       type: 'bar',
-      label: 'Dataset 1',
       backgroundColor: '#42A5F5',
       data: [
         50,
@@ -27,7 +26,6 @@ export class ExamPage implements OnInit {
       ]
     }, {
       type: 'bar',
-      label: 'Dataset 2',
       backgroundColor: '#66BB6A',
       data: [
         21,
@@ -40,7 +38,6 @@ export class ExamPage implements OnInit {
       ]
     }, {
       type: 'bar',
-      label: 'Dataset 3',
       backgroundColor: '#FFA726',
       data: [
         41,
@@ -55,38 +52,44 @@ export class ExamPage implements OnInit {
   };
   stackedOptions = {
     plugins: {
+      legend: {display: false},
       tooltips: {
         mode: 'index',
         intersect: false
       },
-      legend: {
-        labels: {
-          color: '#495057'
-        }
-      }
+      // legend: {
+      //   labels: {
+      //     color: '#495057'
+      //   }
+      // }
     },
     scales: {
       x: {
-        stacked: true,
+        stacked: false,
         ticks: {
-          color: '#495057'
+          font: {family: 'IRANSans'},
         },
-        grid: {
-          color: '#ebedef'
-        }
+        // ticks: {
+        //   color: '#495057'
+        // },
+        // grid: {
+        //   color: '#ebedef'
+        // }
       },
       y: {
-        stacked: true,
+        stacked: false,
         ticks: {
-          color: '#495057'
-        },
-        grid: {
-          color: '#ebedef'
+          font: {family: 'IRANSans'},
         }
+        // ticks: {
+        //   color: '#495057'
+        // },
+        // grid: {
+        //   color: '#ebedef'
+        // }
       }
     }
   };
-
 
   ngOnInit(): void {
   }
