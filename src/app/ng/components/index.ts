@@ -36,6 +36,7 @@ import {EmptyComponent} from "@ng/components/empty/empty.component";
 import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
+import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -65,5 +66,6 @@ export const COMPONENTS: Type<any>[] = [
   EmptyComponent,
   StatusComponent,
   LoadingComponent,
-  LoadingContainerComponent
+  LoadingContainerComponent,
+  IranMapComponent
 ];
