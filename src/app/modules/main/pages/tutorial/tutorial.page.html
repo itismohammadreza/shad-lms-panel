@@ -1,1 +1,78 @@
-<p>tutorial works!</p>
+<div class="container-fluid">
+  <div class="row align-items-stretch">
+    <div class="col-lg-6 mb-3">
+      <p-card>
+        <h5>میزان درسنامه ها در مقاطع تحصیلی</h5>
+        <div class="row mt-4">
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="ابتدایی" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="متوسطه اول" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="متوسطه دوم" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="فنی و حرفه ای" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="کار دانش" sub="100216"></ng-figure>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div class="col-lg-6 mb-3">
+      <p-card>
+        <h5>آمار درسنامه ها</h5>
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-5 col-xl-4 mt-2">
+            <ng-figure title="بارگزاری شده" layout="horizontal" sub="100216"></ng-figure>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div class="col-12">
+      <p-card>
+        <h5>درسنامه</h5>
+        <form class="form-row align-items-center my-4">
+          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="همه"></ng-checkbox>
+          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="بارگزاری شده"></ng-checkbox>
+          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="تمام شده"></ng-checkbox>
+          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="دانلود شده"></ng-checkbox>
+          <ng-jalali-datepicker class="col-sm-6 col-md-2 col-xl-1 mb-2" label="از تاریخ"></ng-jalali-datepicker>
+          <ng-jalali-datepicker class="col-sm-6 col-md-2 col-xl-1 mb-2" label="تا تاریخ"></ng-jalali-datepicker>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="نوع آزمون"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="درس"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="رشته تحصیلی"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="پایه تحصیلی"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="مقاطع تحصیلی"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="جنسیت"></ng-dropdown>
+        </form>
+        <div class="row">
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="مشاهده شده" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="برگزار شده" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="دانلود شده" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="میزان شرکت دانش آموزان" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="براساس جنسیت" sub="100216"></ng-figure>
+          </div>
+          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
+            <ng-figure title="تستی و تشریحی" sub="100216"></ng-figure>
+          </div>
+          <div class="col-12 mt-5">
+            <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>

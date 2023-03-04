@@ -5,6 +5,8 @@ import {DashboardPage} from "@modules/main/pages/dashboard/dashboard.page";
 import {ExamPage} from "@modules/main/pages/exam/exam.page";
 import {HomeworkPage} from "@modules/main/pages/homework/homework.page";
 import {TutorialPage} from "@modules/main/pages/tutorial/tutorial.page";
+import {ProfilePage} from "@modules/main/pages/profile/profile.page";
+import {ProfileEditPage} from "@modules/main/pages/profile-edit/profile-edit.page";
 
 const routes: Routes = [
   {
@@ -30,6 +32,16 @@ const routes: Routes = [
         path: 'tutorial',
         component: TutorialPage,
         title: 'درسنامه'
+      },
+      {
+        path: 'profile',
+        component: ProfilePage,
+        title: 'پروفایل'
+      },
+      {
+        path: 'profile-edit',
+        component: ProfileEditPage,
+        title: 'ویرایش پروفایل'
       },
       {
         path: '',
