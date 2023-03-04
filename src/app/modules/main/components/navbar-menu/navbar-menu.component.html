@@ -2,21 +2,10 @@
   <p-menubar [model]="items" class="fixed-top">
     <ng-template pTemplate="end">
       <div class="d-flex align-items-center">
-        <p-avatar icon="pi pi-user" size="large" shape="circle"></p-avatar>
-        <ng-button icon="pi pi-bell" size="lg" [rounded]="true" appearance="text" class="mr-2"></ng-button>
+        <p-avatar role="button" icon="pi pi-user" routerLink="/profile" size="large" shape="circle"></p-avatar>
       </div>
     </ng-template>
   </p-menubar>
-  <!--  <nav class="navbar navbar-expand shadow-sm fixed-top">-->
-  <!--    <div class="collapse navbar-collapse">-->
-  <!--      <ul class="navbar-nav p-0 mr-auto">-->
-  <!--        <li class="nav-item pr-4 mr-4 border-right">-->
-  <!--          <span class="ml-3">{{ "Admin" }}</span>-->
-  <!--          <p-avatar shape="circle" size="large" icon="pi pi-user"></p-avatar>-->
-  <!--        </li>-->
-  <!--      </ul>-->
-  <!--    </div>-->
-  <!--  </nav>-->
   <main>
     <ng-content></ng-content>
   </main>

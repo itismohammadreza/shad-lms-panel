@@ -1,14 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '@core/http';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends ApiService {
-  private _me: any;
-
-  constructor(private router: Router) {
+  constructor() {
     super();
   }
 
@@ -24,8 +21,7 @@ export class AuthService extends ApiService {
     return !!localStorage.getItem('token');
   }
 
-  async logout() {
+  logout() {
     localStorage.removeItem('token');
-    await this.router.navigate(['/404']);
   }
 }
