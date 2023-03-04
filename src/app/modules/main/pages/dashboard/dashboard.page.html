@@ -98,8 +98,60 @@
       </p-card>
     </div>
 
-    <div class="col-12 mb-3">
-      <p-card>content</p-card>
+    <div class="col-12 mb-3 iran-map">
+      <p-card>
+        <h5>میزان استفاده مدارس از LMS</h5>
+        <div class="row">
+          <div class="order-1 mb-4 col-md-6 col-lg-3">
+            <div class="border bg-white rounded p-4 shadow">
+              <ng-dropdown class="mb-3" label="جنسیت"></ng-dropdown>
+              <ng-dropdown class="mb-3" label="استان"></ng-dropdown>
+              <ng-dropdown class="mb-3" label="منطقه"></ng-dropdown>
+              <ng-dropdown class="mb-3" label="مدرسه"></ng-dropdown>
+              <ng-dropdown class="mb-3" label="نوع مدرسه"></ng-dropdown>
+              <ng-dropdown class="mb-5" label="مقطع"></ng-dropdown>
+              <ng-button [full]="true" size="md" appearance="outlined" color="success" label="اعمال تغییرات"></ng-button>
+            </div>
+          </div>
+          <div class="order-3 order-md-4 order-lg-2 col-md-12 col-lg-6">
+            <ng-pinch-zoom overflow="visible">
+              <ng-iran-map [multiple]="false"></ng-iran-map>
+            </ng-pinch-zoom>
+          </div>
+          <div class="order-2 mb-4 order-lg-3 col-md-6 col-lg-3">
+            <div class="border bg-white rounded p-4 shadow">
+              <div class="text-center">
+                <h5 class="text-muted mb-4">مجموع‌ استفاده از LMS</h5>
+                <h3 class="mb-4">154457</h3>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span>آزمون ها</span>
+                <span class="text-dark">123123</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span>تکالیف</span>
+                <span class="text-dark">123123</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span>درسنامه</span>
+                <span class="text-dark">123123</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span>تعداد مدارس</span>
+                <span class="text-dark">123123</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span>دخترانه</span>
+                <span class="text-dark">123123</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <span>پسرانه</span>
+                <span class="text-dark">123123</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
     </div>
   </div>
 </div>

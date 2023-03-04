@@ -1,9 +1,23 @@
 h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
+  position: relative;
 }
 
 .iran-map ::ng-deep {
   .p-card-body {
     overflow: hidden;
+  }
+
+  h5 {
+    z-index: 200;
+    position: relative;
+  }
+
+  .row > div {
+    &:first-child,
+    &:last-child {
+      position: relative;
+      z-index: 200;
+    }
   }
 }
