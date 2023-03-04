@@ -475,9 +475,8 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
         return
       }
     } else {
-      if (selectedIds.length == 1 && !selectedIds.find(id => id == province.id)) {
-        return
-      }
+      this._provinces.forEach(p => p.selected = false);
+      selectedIds.length = 0;
     }
     province.selected = !province.selected;
     if (province.selected) {
@@ -496,6 +495,7 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
       this.onModelChange(selectedIds[0]);
       this.onChange.emit(selectedIds[0]);
     }
+    console.log(selectedIds)
     this.onClick.emit(event);
   }
 }
