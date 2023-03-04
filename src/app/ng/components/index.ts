@@ -37,6 +37,7 @@ import {LoadingComponent} from "@ng/components/loading/loading.component";
 import {StatusComponent} from "@ng/components/status/status.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
 import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
+import {InputPasswordComponent} from "@ng/components/input-password/input-password.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
@@ -46,6 +47,7 @@ export const COMPONENTS: Type<any>[] = [
   SwitchComponent,
   InputTextComponent,
   InputTextareaComponent,
+  InputPasswordComponent,
   JalaliDatepickerComponent,
   RadioComponent,
   /***************************** BUTTONS *************************/

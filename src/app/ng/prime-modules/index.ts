@@ -17,7 +17,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea'
 import {KeyFilterModule} from 'primeng/keyfilter';
 // import {ListboxModule} from 'primeng/listbox';
 // import {MultiSelectModule} from 'primeng/multiselect';
-// import {PasswordModule} from 'primeng/password';
+import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
 // import {RatingModule} from 'primeng/rating';
 // import {SliderModule} from 'primeng/slider';
@@ -138,7 +138,7 @@ export const MODULES: Type<any>[] = [
   KeyFilterModule,
   // ListboxModule,
   // MultiSelectModule,
-  // PasswordModule,
+  PasswordModule,
   RadioButtonModule,
   // RatingModule,
   // SliderModule,
