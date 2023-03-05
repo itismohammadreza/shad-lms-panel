@@ -1,8 +1,7 @@
 form {
   .box {
     background-color: var(--surface-b);
-    border: 1px solid var(--surface-d);
     width: 400px;
-    z-index: 20000;
+    border-radius: 1rem;
   }
 }

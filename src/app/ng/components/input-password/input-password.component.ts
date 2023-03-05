@@ -39,6 +39,9 @@ import {GlobalConfig} from "@core/global.config";
       multi: true,
     },
   ],
+  host: {
+    '[style.display]': "'block'"
+  },
 })
 export class InputPasswordComponent implements OnInit, AfterViewInit, AfterContentInit, ControlValueAccessor {
   @Input() value: any;
@@ -61,7 +64,7 @@ export class InputPasswordComponent implements OnInit, AfterViewInit, AfterConte
   @Input() weakLabel: string = 'ضعیف';
   @Input() mediumLabel: string = 'متوسط';
   @Input() strongLabel: string = 'قوی';
-  @Input() feedback: boolean = true;
+  @Input() feedback: boolean;
   @Input() toggleMask: boolean;
   @Input() appendTo: any;
   @Input() disabled: boolean;
