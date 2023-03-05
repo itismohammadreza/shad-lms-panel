@@ -5,7 +5,8 @@
         <div class="d-flex flex-column flex-sm-row align-items-center justify-content-sm-between mb-4">
           <h4>لیست کاربران</h4>
           <div class="d-flex align-items-center">
-            <ng-button size="md" class="ml-2" label="افزودن" icon="pi pi-plus" color="success"></ng-button>
+            <ng-button size="md" class="ml-2" label="افزودن" icon="pi pi-plus" color="success"
+                       (onClick)="onAddUser()"></ng-button>
             <ng-input-text placeholder="جستجو در کاربران" icon="pi pi-search"></ng-input-text>
           </div>
         </div>
@@ -32,7 +33,7 @@
               <td>{{user.permission}}</td>
               <td>{{user.lastVisit}}</td>
               <td>
-                <p-inputSwitch></p-inputSwitch>
+                <ng-switch (onChange)="changeUserStatus($event)" [async]="true"></ng-switch>
               </td>
             </tr>
           </ng-template>
