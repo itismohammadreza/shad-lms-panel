@@ -1,0 +1,16 @@
+::ng-deep {
+  .p-datatable {
+    white-space: nowrap;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+  }
+
+  .p-datatable .p-datatable-tbody > tr td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
