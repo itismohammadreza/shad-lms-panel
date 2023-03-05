@@ -73,7 +73,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() inline: boolean;
   @Input() showOtherMonths: boolean = true;
   @Input() selectOtherMonths: boolean;
-  @Input() showIcon: boolean = true;
+  @Input() showIcon: boolean;
   @Input() showOnFocus: boolean = true;
   @Input() showWeek: boolean;
   @Input() datePickerIcon: string = 'pi pi-calendar';
