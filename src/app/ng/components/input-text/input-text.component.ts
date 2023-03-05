@@ -28,10 +28,10 @@ import {GlobalConfig} from "@core/global.config";
   selector: 'ng-input-text',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
-    host: {
+  host: {
     '[style.display]': "'block'"
   },
-providers: [
+  providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputTextComponent),

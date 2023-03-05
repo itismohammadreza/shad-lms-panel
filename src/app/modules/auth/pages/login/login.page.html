@@ -1,26 +1,25 @@
 <form class="form-row justify-content-center" [formGroup]="form">
-  <div class="p-4 box rounded-lg shadow">
+  <div class="p-4 box shadow">
     <h4 class="text-center mb-5">پنل مشاهده آمار LMS</h4>
     <span class="d-block text-muted mb-4">نام کاربری و رمز عبور خود را وارد کنید</span>
     <ng-input-text
       class="mb-4"
       formControlName="email"
+      inputSize="md"
       labelPos="fix-top"
-      [showRequiredStar]="false"
       icon="pi pi-user"
       label="نام کاربری"
       [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
     ></ng-input-text>
-    <ng-input-text
+    <ng-input-password
       class="mb-5"
-      type="password"
-      icon="pi pi-key"
-      labelPos="fix-top"
-      [showRequiredStar]="false"
       formControlName="password"
+      inputSize="md"
+      labelPos="fix-top"
+      [toggleMask]="true"
       label="رمز عبور"
       [validation]="{'required':'این فیلد الزامیست.'}"
-    ></ng-input-text>
+    ></ng-input-password>
     <ng-button
       [async]="true"
       [full]="true"
