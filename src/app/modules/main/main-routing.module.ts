@@ -7,6 +7,7 @@ import {HomeworkPage} from "@modules/main/pages/homework/homework.page";
 import {TutorialPage} from "@modules/main/pages/tutorial/tutorial.page";
 import {ProfilePage} from "@modules/main/pages/profile/profile.page";
 import {ProfileEditPage} from "@modules/main/pages/profile-edit/profile-edit.page";
+import {UsersPage} from "@modules/main/pages/users/users.page";
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
         path: 'profile-edit',
         component: ProfileEditPage,
         title: 'ویرایش پروفایل'
+      },
+      {
+        path: 'users',
+        component: UsersPage,
+        title: 'مدیریت کاربران'
       },
       {
         path: '',

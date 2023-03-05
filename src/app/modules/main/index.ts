@@ -9,6 +9,7 @@ import {TutorialPage} from "@modules/main/pages/tutorial/tutorial.page";
 import {FigureComponent} from "@modules/main/components/figure/figure.component";
 import {ProfilePage} from "@modules/main/pages/profile/profile.page";
 import {ProfileEditPage} from "@modules/main/pages/profile-edit/profile-edit.page";
+import {UsersPage} from "@modules/main/pages/users/users.page";
 
 export const COMPONENTS: Type<any>[] = [
   NavbarMenuComponent,
@@ -20,5 +21,6 @@ export const COMPONENTS: Type<any>[] = [
   HomeworkPage,
   TutorialPage,
   ProfilePage,
-  ProfileEditPage
+  ProfileEditPage,
+  UsersPage
 ];

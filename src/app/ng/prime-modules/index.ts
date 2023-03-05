@@ -38,7 +38,7 @@ import {ButtonModule} from 'primeng/button';
 // import {OrganizationChartModule} from 'primeng/organizationchart';
 // import {PaginatorModule} from 'primeng/paginator';
 // import {PickListModule} from 'primeng/picklist';
-// import {TableModule} from 'primeng/table';
+import {TableModule} from 'primeng/table';
 // import {TimelineModule} from 'primeng/timeline';
 // import {TreeModule} from 'primeng/tree';
 // import {TreeTableModule} from 'primeng/treetable';
@@ -157,7 +157,7 @@ export const MODULES: Type<any>[] = [
   // OrganizationChartModule,
   // PaginatorModule,
   // PickListModule, // has dependency
-  // TableModule,
+  TableModule,
   // TimelineModule,
   // TreeModule,
   // TreeTableModule,
