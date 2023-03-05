@@ -1,9 +1,9 @@
 <form class="form-row justify-content-center" [formGroup]="form">
   <div class="p-4 box rounded-lg shadow">
-    <h4>ورود</h4>
-    <small class="d-block text-muted mb-4">برای ورود نام کاربری و رمز عبور خود را به درستی وارد کنید</small>
+    <h4 class="text-center mb-5">پنل مشاهده آمار LMS</h4>
+    <span class="d-block text-muted mb-4">نام کاربری و رمز عبور خود را وارد کنید</span>
     <ng-input-text
-      class="mb-3"
+      class="mb-4"
       formControlName="email"
       labelPos="fix-top"
       [showRequiredStar]="false"
@@ -12,7 +12,7 @@
       [validation]="{'required':'این فیلد الزامیست.','email':'ایمیل نامعتبر است.'}"
     ></ng-input-text>
     <ng-input-text
-      class="mb-3"
+      class="mb-5"
       type="password"
       icon="pi pi-key"
       labelPos="fix-top"
@@ -21,10 +21,10 @@
       label="رمز عبور"
       [validation]="{'required':'این فیلد الزامیست.'}"
     ></ng-input-text>
-    <a class="d-block mb-5" routerLink="">فراموشی رمز عبور</a>
     <ng-button
       [async]="true"
       [full]="true"
+      size="lg"
       type="submit"
       label="ورود"
       (onClickAsync)="onSubmit($event)"
