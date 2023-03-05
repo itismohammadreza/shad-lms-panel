@@ -54,7 +54,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() icon: string;
+  @Input() icon: string = 'pi pi-calendar';
   @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
@@ -84,7 +84,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() maxDate: Moment;
   @Input() disabledDates: any[];
   @Input() disabledDays: any[];
-  @Input() showTime: boolean = true;
+  @Input() showTime: boolean;
   @Input() hourFormat: NgDatepickerHourFormat = '24';
   @Input() timeOnly: boolean;
   @Input() timeSeparator: string = ':';
@@ -95,7 +95,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() stepMinute: number = 1;
   @Input() stepSecond: number = 1;
   @Input() maxDateCount: number;
-  @Input() showButtonBar: boolean = true;
+  @Input() showButtonBar: boolean;
   @Input() todayButtonStyleClass: string = 'p-button-text';
   @Input() clearButtonStyleClass: string = 'p-secondary-button';
   @Input() baseZIndex: number = 0;
@@ -108,7 +108,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() view: NgDatepickerViewMode = 'date';
   @Input() multipleSeparator: string = ',';
   @Input() rangeSeparator: string = '-';
-  @Input() touchUI: boolean = true;
+  @Input() touchUI: boolean;
   @Input() focusTrap: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
   @Input() hideTransitionOptions: string = '.1s linear';

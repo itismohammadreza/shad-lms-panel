@@ -419,6 +419,9 @@ export class IranMapComponent implements OnInit, AfterViewInit, ControlValueAcce
     const tooltipEl = el.querySelector('.title') as any;
     el.querySelectorAll('svg g path').forEach(pathElement => {
       const provinceName = pathElement.getAttribute('data-name');
+      if (!provinceName) {
+        return
+      }
       pathElement.addEventListener('mouseover', (event) => {
         tooltipEl.innerHTML = provinceName;
         tooltipEl.style.display = 'flex';
