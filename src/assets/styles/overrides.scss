@@ -11,3 +11,14 @@ ng-input-password .p-inputtext,
 ng-button p-button button.p-button {
   border-radius: 1rem;
 }
+
+ng-checkbox .p-checkbox .p-checkbox-box {
+  border-radius: 0.5rem;
+
+  &.p-highlight .p-checkbox-icon.pi-check:before {
+    top: 8px;
+    left: 2.5px;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+  }
+}
