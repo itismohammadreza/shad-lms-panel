@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {Validators} from "@angular/forms";
-import {UserItem} from "@core/models";
+import {UserItem, UserProfile} from "@core/models";
 import {DataService} from "@core/http";
 
 @Component({
@@ -99,9 +99,14 @@ export class UsersPage implements OnInit {
     console.log(event)
   }
 
-  changeUserStatus(event: any) {
+  async changeUserStatus(user: UserItem, event: any) {
     const {value, loadingCallback} = event;
-    loadingCallback()
+    try {
+      await this.dataService.editProfile({...user, status: value} as UserProfile);
+      loadingCallback()
+    } catch (e) {
+      loadingCallback(false)
+    }
   }
 
   editUser(user: UserItem, index: number) {
