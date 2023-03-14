@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '@core/http';
 import {Router} from '@angular/router';
+import {LoginCredentials} from "@core/models";
 
 @Component({
   selector: 'ng-login-page',
@@ -17,15 +18,14 @@ export class LoginPage {
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  async onSubmit(callback: any) {
+  async onSubmit(callback: VoidFunction) {
     if (this.form.invalid) {
       callback()
       return;
     }
     try {
-      const res = await this.authService.login(this.form.value);
+      await this.authService.login(this.form.value as LoginCredentials);
       callback();
-      localStorage.setItem('token', res.token);
       this.router.navigate(['/dashboard']);
     } catch (e) {
       callback();

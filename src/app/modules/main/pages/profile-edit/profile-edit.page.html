@@ -10,13 +10,40 @@
             <input #filePicker class="p-sr-only" (change)="onSelectImage($event)" type="file">
           </div>
           <div class="col-sm-8 col-md-9 col-xl-8">
-            <form class="row">
-              <ng-input-text class="col-md-6 mb-3 mb-md-0" labelPos="fix-top" label="نام کاربری"></ng-input-text>
-              <ng-input-text class="col-md-6 mb-3 mb-md-0" labelPos="fix-top" label="ایمیل"></ng-input-text>
-              <ng-input-password [toggleMask]="true" [feedback]="false" class="col-md-6 mb-3 mb-md-0" labelPos="fix-top"
-                                 label="رمزعبور"></ng-input-password>
-              <ng-input-text class="col-md-6 mb-3 mb-md-0" labelPos="fix-top" label="تلفن همراه"></ng-input-text>
-              <ng-button class="col-12 text-left mt-4" color="success" label="ثبت تغییرات"></ng-button>
+            <form [formGroup]="form" class="row" (ngSubmit)="onSubmit()">
+              <ng-input-text
+                formControlName="username"
+                [validation]="{required:'این فیلد الزامیست'}"
+                class="col-md-6 mb-3 mb-md-0"
+                labelPos="fix-top"
+                label="نام کاربری">
+              </ng-input-text>
+              <ng-input-text
+                formControlName="email"
+                keyFilter="email"
+                [validation]="{required:'این فیلد الزامیست',email:'ایمیل نامعتبر است'}"
+                class="col-md-6 mb-3 mb-md-0"
+                labelPos="fix-top"
+                label="ایمیل">
+              </ng-input-text>
+              <ng-input-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                class="col-md-6 mb-3 mb-md-0"
+                labelPos="fix-top"
+                label="رمزعبور">
+              </ng-input-password>
+              <ng-input-text
+                formControlName="phone_number"
+                [maxlength]="11"
+                keyFilter="num"
+                [validation]="{required:'این فیلد الزامیست'}"
+                class="col-md-6 mb-3 mb-md-0"
+                labelPos="fix-top"
+                label="تلفن همراه">
+              </ng-input-text>
+              <ng-button class="col-12 text-left mt-4" color="success" type="submit" label="ثبت تغییرات"></ng-button>
             </form>
           </div>
         </div>

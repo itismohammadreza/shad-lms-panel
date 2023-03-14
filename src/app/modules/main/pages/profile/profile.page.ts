@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
-import {AuthService} from "@core/http";
+import {AuthService, DataService} from "@core/http";
 import {Router} from "@angular/router";
+import {UserProfile} from "@core/models";
 
 @Component({
   selector: 'ng-profile',
@@ -9,13 +10,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile.page.scss']
 })
 export class ProfilePage implements OnInit {
+  profile: UserProfile;
 
   constructor(private overlayService: OverlayService,
+              private dataService: DataService,
               private authService: AuthService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  async loadData() {
+    this.profile = await this.authService.getProfile();
   }
 
   async logout() {
@@ -25,7 +33,7 @@ export class ProfilePage implements OnInit {
       closable: false
     })
     if (dialogRes) {
-      this.authService.logout();
+      await this.authService.logout();
       this.router.navigateByUrl('/auth/login')
     }
   }
