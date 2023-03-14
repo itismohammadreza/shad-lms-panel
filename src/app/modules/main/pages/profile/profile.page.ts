@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {AuthService, DataService} from "@core/http";
-import {Router} from "@angular/router";
 import {UserProfile} from "@core/models";
 
 @Component({
@@ -14,8 +13,7 @@ export class ProfilePage implements OnInit {
 
   constructor(private overlayService: OverlayService,
               private dataService: DataService,
-              private authService: AuthService,
-              private router: Router) {
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +32,6 @@ export class ProfilePage implements OnInit {
     })
     if (dialogRes) {
       await this.authService.logout();
-      this.router.navigateByUrl('/auth/login')
     }
   }
 }
