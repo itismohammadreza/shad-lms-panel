@@ -10,7 +10,7 @@ export class AuthService extends ApiService {
   }
 
   login(data: any) {
-    return this._get<any>('user/whoami').toPromise();
+    return this._post<any>('login', data).toPromise();
   }
 
   register(data: any) {
