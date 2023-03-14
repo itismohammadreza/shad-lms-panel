@@ -22,6 +22,7 @@
                 <p-sortIcon field="lastVisit"></p-sortIcon>
               </th>
               <th pSortableColumn="status">وضعیت</th>
+              <th>ویرایش</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-user let-index="rowIndex">
@@ -36,7 +37,7 @@
                 <ng-switch [value]="user.status" (onChangeAsync)="changeUserStatus($event)" [async]="true"></ng-switch>
               </td>
               <td>
-                <ng-button icon="pi pi-pencil" (onClick)="editUser(user,index)"></ng-button>
+                <ng-button icon="pi pi-pencil" size="md" (onClick)="editUser(user,index)"></ng-button>
               </td>
             </tr>
           </ng-template>
