@@ -23,25 +23,27 @@ export class UsersPage implements OnInit {
     this.users = await this.dataService.getUsers()
   }
 
-  onAddUser() {
-    this.overlayService.showDialogForm([
+  openUserDialog(value?: UserItem) {
+    return this.overlayService.showDialogForm([
         {
           component: 'input-text',
           key: 'username',
           label: 'نام کاربری',
+          value: value?.username,
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
           component: 'input-text',
           key: 'password',
           label: 'رمز عبور',
+          value: value?.password,
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
           component: 'dropdown',
           key: 'permission',
           options: [{label: 'ادمین', value: 'Admin'}, {label: 'کاربر', value: 'User'}],
-          value: 'User',
+          value: value?.permission || 'User',
           label: 'سطح دسترسی',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
@@ -49,6 +51,7 @@ export class UsersPage implements OnInit {
           component: 'input-text',
           key: 'phone_number',
           label: 'شماره همراه',
+          value: value?.phone_number,
           maxlength: 11,
           keyFilter: 'num',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
@@ -57,6 +60,7 @@ export class UsersPage implements OnInit {
           component: 'input-text',
           key: 'email',
           label: 'ایمیل',
+          value: value?.email,
           validations: [
             {type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'},
             {type: 'email', validator: Validators.email, message: 'ایمیل نامعتبر است'}
@@ -64,14 +68,18 @@ export class UsersPage implements OnInit {
         },
       ],
       {
-        header: 'افزودن کاربر',
+        header: value ? 'ویرایش کاربر' : 'افزودن کاربر',
         showHeader: true,
         buttonFull: true,
         buttonSize: 'lg',
         acceptColor: 'success',
-        acceptLabel: 'افزودن',
+        acceptLabel: value ? 'ویرایش' : 'افزودن',
         acceptIcon: 'pi pi-plus'
-      }).subscribe(async (res) => {
+      })
+  }
+
+  onAddUser() {
+    this.openUserDialog().subscribe(async (res) => {
       try {
         const {user} = await this.dataService.addUser(res.formValue);
         this.users.push(user)
@@ -89,5 +97,17 @@ export class UsersPage implements OnInit {
   changeUserStatus(event: any) {
     const {value, loadingCallback} = event;
     loadingCallback()
+  }
+
+  editUser(user: UserItem, index: number) {
+    this.openUserDialog(user).subscribe(async (res) => {
+      try {
+        await this.dataService.editProfile(res.formValue);
+        this.users[index] = res.formValue
+        res.changeDialogVisibilityTo(false);
+      } catch (e) {
+        res.changeDialogVisibilityTo(true)
+      }
+    })
   }
 }

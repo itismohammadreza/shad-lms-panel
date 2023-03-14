@@ -35,6 +35,9 @@
               <td>
                 <ng-switch [value]="user.status" (onChangeAsync)="changeUserStatus($event)" [async]="true"></ng-switch>
               </td>
+              <td>
+                <ng-button icon="pi pi-pencil" (onClick)="editUser(user,index)"></ng-button>
+              </td>
             </tr>
           </ng-template>
         </p-table>
