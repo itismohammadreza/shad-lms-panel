@@ -22,10 +22,6 @@ export class AuthService extends ApiService {
     return this._get<UserProfile>('profile').toPromise();
   }
 
-  editProfile(data: Exclude<UserProfile, "id">) {
-    return this._post<UserProfile>('edit-profile', data).toPromise();
-  }
-
   logout() {
     return this._get<any>('logout').toPromise().then(res => {
       this.removeTokenAndNavigateToLogin();

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "@core/http";
+import {AuthService, DataService} from "@core/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserProfile} from "@core/models";
 
@@ -16,7 +16,8 @@ export class ProfileEditPage implements OnInit {
     phone_number: new FormControl(null, [Validators.required]),
   })
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private dataService: DataService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +37,6 @@ export class ProfileEditPage implements OnInit {
     if (this.form.invalid) {
       return
     }
-    await this.authService.editProfile(this.form.value as UserProfile)
+    await this.dataService.editProfile(this.form.value as UserProfile)
   }
 }
