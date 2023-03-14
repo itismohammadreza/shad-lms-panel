@@ -1,6 +1,7 @@
 import {NgModule, Type} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {StatusComponent} from "@ng/components/status/status.component";
+import {AuthGuard} from "@core/guard";
 
 export const routes: Routes = [
   {
@@ -13,7 +14,7 @@ export const routes: Routes = [
     path: '',
     loadChildren: (): Promise<Type<any>> =>
       import('@modules/main/main.module').then((m) => m.MainModule),
-    // canLoad: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: '404',
