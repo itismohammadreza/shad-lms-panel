@@ -9,19 +9,29 @@ export class AuthService extends ApiService {
     super();
   }
 
-  login(data: any) {
-    return this._post<any>('login', data).toPromise();
+  login(data: LoginCredentials) {
+    return this._post<{ token: string }>('login', data).toPromise().then(res => {
+      localStorage.setItem('token', res.token);
+      return res
+    });
   }
 
-  register(data: any) {
-    return this._get<any>('user/whoami').toPromise();
+  getProfile() {
+    return this._get<UserProfile>('profile').toPromise();
+  }
+
+  editProfile(data: Exclude<UserProfile, "id">) {
+    return this._post<UserProfile>('edit-profile', data).toPromise();
+  }
+
+  logout() {
+    return this._get<any>('logout').toPromise().then(res => {
+      localStorage.removeItem('token');
+      return res
+    });
   }
 
   hasToken(): boolean {
     return !!localStorage.getItem('token');
-  }
-
-  logout() {
-    localStorage.removeItem('token');
   }
 }
