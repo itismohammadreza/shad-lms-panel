@@ -1,15 +1,20 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "@core/http/api.service";
-import {Router} from "@angular/router";
-import {OverlayService} from "@ng/services";
+import {UserItem} from "@core/models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService extends ApiService {
-  constructor(private router: Router,
-              private overlayService: OverlayService) {
+  constructor() {
     super()
   }
 
+  getUsers() {
+    return this._get<UserItem[]>('users').toPromise();
+  }
+
+  addUser(data: UserItem) {
+    return this._post<UserItem>('add-user', data).toPromise();
+  }
 }

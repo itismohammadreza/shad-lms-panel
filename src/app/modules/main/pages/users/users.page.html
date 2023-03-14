@@ -28,12 +28,12 @@
             <tr>
               <td>{{index + 1}}</td>
               <td>{{user.username}}</td>
-              <td>{{user.phone}}</td>
+              <td>{{user.phone_number}}</td>
               <td>{{user.email}}</td>
               <td>{{user.permission}}</td>
-              <td>{{user.lastVisit}}</td>
+              <td>{{user.last_visit}}</td>
               <td>
-                <ng-switch (onChange)="changeUserStatus($event)" [async]="true"></ng-switch>
+                <ng-switch [value]="user.status" (onChangeAsync)="changeUserStatus($event)" [async]="true"></ng-switch>
               </td>
             </tr>
           </ng-template>

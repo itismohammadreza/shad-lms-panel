@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {Validators} from "@angular/forms";
+import {UserItem} from "@core/models";
+import {DataService} from "@core/http";
 
 @Component({
   selector: 'ng-users',
@@ -8,74 +10,24 @@ import {Validators} from "@angular/forms";
   styleUrls: ['./users.page.scss']
 })
 export class UsersPage implements OnInit {
-  users: any[] = [
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-    {
-      username: 'user1',
-      phone: '09391886467',
-      email: 'asdtest@fif.com',
-      permission: 'admin',
-      lastVisit: '1401/11/20',
-    },
-  ];
+  users: UserItem[] = [];
 
-  constructor(private overlayService: OverlayService) {
+  constructor(private overlayService: OverlayService, private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  async loadData() {
+    this.users = await this.dataService.getUsers()
   }
 
   onAddUser() {
     this.overlayService.showDialogForm([
         {
           component: 'input-text',
-          key: 'firstName',
-          label: 'نام',
-          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
-        },
-        {
-          component: 'input-text',
-          key: 'lastName',
-          label: 'نام خانوادگی',
-          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
-        },
-        {
-          component: 'input-text',
-          key: 'userName',
+          key: 'username',
           label: 'نام کاربری',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
@@ -88,14 +40,17 @@ export class UsersPage implements OnInit {
         {
           component: 'dropdown',
           key: 'permission',
-          options: [],
+          options: [{label: 'ادمین', value: 'Admin'}],
+          value: 'Admin',
           label: 'سطح دسترسی',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
           component: 'input-text',
-          key: 'phone',
+          key: 'phone_number',
           label: 'شماره همراه',
+          maxlength: 11,
+          keyFilter: 'num',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
@@ -116,7 +71,15 @@ export class UsersPage implements OnInit {
         acceptColor: 'success',
         acceptLabel: 'افزودن',
         acceptIcon: 'pi pi-plus'
-      })
+      }).subscribe(async (res) => {
+      try {
+        await this.dataService.addUser(res.formValue);
+        this.users.push({...res.formValue, status: true})
+        res.changeDialogVisibilityTo(false);
+      } catch (e) {
+        res.changeDialogVisibilityTo(true)
+      }
+    })
   }
 
   onSort(event: any) {
@@ -124,6 +87,7 @@ export class UsersPage implements OnInit {
   }
 
   changeUserStatus(event: any) {
-
+    const {value, loadingCallback} = event;
+    loadingCallback()
   }
 }
