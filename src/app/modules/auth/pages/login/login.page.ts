@@ -10,9 +10,8 @@ import {Router} from '@angular/router';
 })
 export class LoginPage {
   form = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
-    rememberMe: new FormControl(false),
   });
 
   constructor(private authService: AuthService, private router: Router) {
