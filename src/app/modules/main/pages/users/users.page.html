@@ -7,10 +7,10 @@
           <div class="d-flex align-items-center">
             <ng-button size="md" class="ml-2" label="افزودن" icon="pi pi-plus" color="success"
                        (onClick)="onAddUser()"></ng-button>
-            <ng-input-text placeholder="جستجو در کاربران" icon="pi pi-search"></ng-input-text>
+            <ng-input-text *ngIf="users.length" placeholder="جستجو در کاربران" icon="pi pi-search"></ng-input-text>
           </div>
         </div>
-        <p-table responsiveLayout="scroll" [value]="users" (onSort)="onSort($event)">
+        <p-table responsiveLayout="scroll" [value]="users" (onSort)="onSort($event)" *ngIf="users.length">
           <ng-template pTemplate="header">
             <tr>
               <th></th>
@@ -38,6 +38,7 @@
             </tr>
           </ng-template>
         </p-table>
+        <ng-empty *ngIf="!users.length"></ng-empty>
       </p-card>
     </div>
   </div>
