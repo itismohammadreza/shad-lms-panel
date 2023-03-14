@@ -15,6 +15,6 @@ export class DataService extends ApiService {
   }
 
   addUser(data: UserItem) {
-    return this._post<UserItem>('add-user', data).toPromise();
+    return this._post<{ user: UserItem }>('add-user', data).toPromise();
   }
 }

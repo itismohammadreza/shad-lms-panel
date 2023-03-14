@@ -40,8 +40,8 @@ export class UsersPage implements OnInit {
         {
           component: 'dropdown',
           key: 'permission',
-          options: [{label: 'ادمین', value: 'Admin'}],
-          value: 'Admin',
+          options: [{label: 'ادمین', value: 'Admin'}, {label: 'کاربر', value: 'User'}],
+          value: 'User',
           label: 'سطح دسترسی',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
@@ -73,8 +73,8 @@ export class UsersPage implements OnInit {
         acceptIcon: 'pi pi-plus'
       }).subscribe(async (res) => {
       try {
-        await this.dataService.addUser(res.formValue);
-        this.users.push({...res.formValue, status: true})
+        const {user} = await this.dataService.addUser(res.formValue);
+        this.users.push(user)
         res.changeDialogVisibilityTo(false);
       } catch (e) {
         res.changeDialogVisibilityTo(true)
