@@ -10,6 +10,7 @@ import {UserProfile} from "@core/models";
 })
 export class ProfileEditPage implements OnInit {
   form = new FormGroup({
+    id: new FormControl(null),
     username: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null),
@@ -36,6 +37,9 @@ export class ProfileEditPage implements OnInit {
   async onSubmit() {
     if (this.form.invalid) {
       return
+    }
+    if (!this.form.value.password) {
+      delete this.form.value.password
     }
     await this.dataService.editProfile(this.form.value as UserProfile)
   }
