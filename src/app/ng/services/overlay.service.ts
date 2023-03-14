@@ -74,7 +74,7 @@ export class OverlayService {
     instance.preventDuplicates = options.preventDuplicates;
     instance.position = options.position || 'top-right';
     instance.style = options.style;
-    instance.baseZIndex = options.baseZIndex || 1000;
+    instance.baseZIndex = options.baseZIndex || 99000;
     instance.autoZIndex = options.autoZIndex != undefined ? options.autoZIndex : true;
     instance.showTransitionOptions = options.showTransitionOptions || '300ms ease-out';
     instance.hideTransitionOptions = options.hideTransitionOptions || '250ms ease-in';

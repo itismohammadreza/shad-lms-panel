@@ -24,7 +24,6 @@ export class RegisterPage {
       return;
     }
     try {
-      await this.authService.register(this.form.value);
       callback();
       this.router.navigate(['/auth/login']);
     } catch (e) {
