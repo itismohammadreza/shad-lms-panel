@@ -11,6 +11,7 @@ export interface UserProfile {
 }
 
 export interface UserItem {
+  id?: string;
   username: string;
   password: string;
   email: string;

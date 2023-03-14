@@ -26,6 +26,11 @@ export class UsersPage implements OnInit {
   openUserDialog(value?: UserItem) {
     return this.overlayService.showDialogForm([
         {
+          component: 'hidden',
+          key: 'id',
+          value: value?.id,
+        },
+        {
           component: 'input-text',
           key: 'username',
           label: 'نام کاربری',
