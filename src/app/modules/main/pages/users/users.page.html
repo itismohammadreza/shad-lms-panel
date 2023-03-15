@@ -34,8 +34,12 @@
               <td>{{user.permission}}</td>
               <td>{{user.last_visit}}</td>
               <td>
-                <ng-switch [value]="user.status" (onChangeAsync)="changeUserStatus(user,$event)"
-                           [async]="true"></ng-switch>
+                <ng-switch
+                  [value]="user.status"
+                  [disabled]="user.id == currentUser.id"
+                  (onChangeAsync)="changeUserStatus(user,$event)"
+                  [async]="true">
+                </ng-switch>
               </td>
               <td>
                 <ng-button icon="pi pi-pencil" size="md" (onClick)="editUser(user,index)"></ng-button>

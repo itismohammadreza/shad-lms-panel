@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {Validators} from "@angular/forms";
 import {User} from "@core/models";
-import {DataService} from "@core/http";
+import {AuthService, DataService} from "@core/http";
 import {Subject, takeUntil} from "rxjs";
 
 @Component({
@@ -11,10 +11,13 @@ import {Subject, takeUntil} from "rxjs";
   styleUrls: ['./users.page.scss']
 })
 export class UsersPage implements OnInit, OnDestroy {
+  currentUser: User;
   users: User[] = [];
   destroy$ = new Subject()
 
-  constructor(private overlayService: OverlayService, private dataService: DataService) {
+  constructor(private overlayService: OverlayService,
+              private dataService: DataService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -22,7 +25,8 @@ export class UsersPage implements OnInit, OnDestroy {
   }
 
   async loadData() {
-    this.users = await this.dataService.getUsers()
+    this.currentUser = this.authService.user;
+    this.users = await this.dataService.getUsers();
   }
 
   openUserDialog(value?: User) {
