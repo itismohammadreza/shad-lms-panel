@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
-import {AuthService, DataService} from "@core/http";
+import {AuthService} from "@core/http";
 import {User} from "@core/models";
 
 @Component({
@@ -9,19 +9,14 @@ import {User} from "@core/models";
   styleUrls: ['./profile.page.scss']
 })
 export class ProfilePage implements OnInit {
-  profile: User;
+  user: User;
 
   constructor(private overlayService: OverlayService,
-              private dataService: DataService,
               private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.loadData()
-  }
-
-  async loadData() {
-    this.profile = await this.authService.getProfile();
+    this.user = this.authService.user;
   }
 
   async logout() {

@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="profile">
+<div class="container-fluid" *ngIf="user">
   <div class="row align-items-stretch">
     <div class="col-12">
       <p-card>
@@ -9,15 +9,15 @@
           </div>
           <div class="col-6 col-sm-3 col-md mb-4 mb-sm-0">
             <span class="font-bold">ادمین</span>
-            <div class="text-muted mt-4">{{profile.username}}</div>
+            <div class="text-muted mt-4">{{user.username}}</div>
           </div>
           <div class="col-6 col-sm-3 col-md mb-4 mb-sm-0">
             <span class="font-bold">ایمیل</span>
-            <div class="text-muted mt-4">{{profile.email}}</div>
+            <div class="text-muted mt-4">{{user.email}}</div>
           </div>
           <div class="col-6 col-sm-3 col-md mb-4 mb-sm-0">
             <span class="font-bold">تلفن</span>
-            <div class="text-muted mt-4">{{profile.phone_number}}</div>
+            <div class="text-muted mt-4">{{user.phone_number}}</div>
           </div>
           <div class="col-12 col-lg col-xl-1 mt-5 mt-lg-0">
             <div class="d-flex flex-column flex-sm-row flex-lg-column">

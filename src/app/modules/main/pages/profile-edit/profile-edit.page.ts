@@ -22,12 +22,8 @@ export class ProfileEditPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData()
-  }
-
-  async loadData() {
-    const res = await this.authService.getProfile();
-    this.form.patchValue(res)
+    const user = this.authService.user;
+    this.form.patchValue(user)
   }
 
   onSelectImage(event: any) {

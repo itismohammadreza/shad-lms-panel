@@ -8,11 +8,13 @@ import {TutorialPage} from "@modules/main/pages/tutorial/tutorial.page";
 import {ProfilePage} from "@modules/main/pages/profile/profile.page";
 import {ProfileEditPage} from "@modules/main/pages/profile-edit/profile-edit.page";
 import {UsersPage} from "@modules/main/pages/users/users.page";
+import {UserDataGuard} from "@core/guard/user-data.guard";
 
 const routes: Routes = [
   {
     path: '',
     component: MainPage,
+    canActivate: [UserDataGuard],
     children: [
       {
         path: 'dashboard',

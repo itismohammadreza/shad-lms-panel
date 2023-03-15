@@ -11,6 +11,16 @@ export class AuthService extends ApiService {
     super();
   }
 
+  private _user: User;
+
+  set user(user: User) {
+    this._user = user;
+  }
+
+  get user() {
+    return this._user;
+  }
+
   login(data: LoginCredentials) {
     return this._post<{ token: string }>('login', data).toPromise().then(res => {
       localStorage.setItem('token', res.token);
