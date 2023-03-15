@@ -10,18 +10,27 @@
             <ng-input-text *ngIf="users.length" placeholder="جستجو در کاربران" icon="pi pi-search"></ng-input-text>
           </div>
         </div>
-        <p-table responsiveLayout="scroll" [value]="users" (onSort)="onSort($event)" *ngIf="users.length">
+        <p-table responsiveLayout="scroll" [value]="users" [customSort]="true"
+                 (sortFunction)="onSort($event)"
+                 *ngIf="users.length">
           <ng-template pTemplate="header">
             <tr>
               <th></th>
               <th>نام کاربری</th>
               <th>شماره تلفن</th>
               <th>ایمیل</th>
-              <th>سطح دسترسی</th>
-              <th pSortableColumn="last_isit">آخرین بازدید
-                <p-sortIcon field="last_isit"></p-sortIcon>
+              <th pSortableColumn="permission">
+                سطح دسترسی
+                <p-sortIcon field="permission"></p-sortIcon>
               </th>
-              <th pSortableColumn="status">وضعیت</th>
+              <th pSortableColumn="last_visit">
+                آخرین بازدید
+                <p-sortIcon field="last_visit"></p-sortIcon>
+              </th>
+              <th pSortableColumn="status">
+                وضعیت
+                <p-sortIcon field="status"></p-sortIcon>
+              </th>
               <th>ویرایش</th>
             </tr>
           </ng-template>

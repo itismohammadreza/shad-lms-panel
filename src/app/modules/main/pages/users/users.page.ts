@@ -104,8 +104,11 @@ export class UsersPage implements OnInit, OnDestroy {
     })
   }
 
-  onSort(event: any) {
-    console.log(event)
+  async onSort(event) {
+    const sort = `${event.order == 1 ? '' : '-'}${event.field}`;
+    const users = await this.dataService.getUsers([sort]);
+    event.data.length = 0;
+    event.data.push(...users);
   }
 
   async changeUserStatus(user: User, event: any) {

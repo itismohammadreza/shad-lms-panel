@@ -10,7 +10,7 @@ export class DataService extends ApiService {
     super()
   }
 
-  getUsers(sort: string[] = []) {
+  getUsers(sort: string[] = null) {
     return this._post<User[]>('users', {sort}).toPromise();
   }
 
