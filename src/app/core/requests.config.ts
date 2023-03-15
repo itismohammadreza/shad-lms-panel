@@ -7,4 +7,5 @@ export const RequestsConfig: RequestConfig[] = [
   {pathTemplate: '/panel/edit-profile/', method: 'POST', loading: true, success: true, failure: true, catch: false},
   {pathTemplate: '/panel/add-user/', method: 'POST', loading: true, success: true, failure: true, catch: false},
   {pathTemplate: '/panel/users/', method: 'GET', loading: true, success: false, failure: true, catch: false},
+  {pathTemplate: '/panel/dashboard-objects-detail/', method: 'POST', loading: true, success: false, failure: true, catch: false},
 ];

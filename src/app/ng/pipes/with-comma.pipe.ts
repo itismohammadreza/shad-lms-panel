@@ -5,7 +5,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class WithCommaPipe implements PipeTransform {
   transform(value: string | number): string {
-    if (!value) {
+    if (value == undefined) {
       return ''
     }
     if (typeof value == 'number') {

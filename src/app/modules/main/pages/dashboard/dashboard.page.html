@@ -2,38 +2,69 @@
   <div class="row">
     <div class="col-12 mb-3">
       <p-card>
-        <div class="filter-box d-flex flex-wrap align-items-center mb-3">
+        <form class="filter-box d-flex flex-wrap align-items-center mb-3"
+              [formGroup]="form"
+              (ngSubmit)="onSubmitFilter()">
           <ng-dropdown class="ml-2 mb-1" label="مقطع"></ng-dropdown>
           <ng-dropdown class="ml-2 mb-1" label="جنسیت"></ng-dropdown>
           <ng-dropdown class="ml-2 mb-1" label="رشته"></ng-dropdown>
           <ng-dropdown class="ml-2 mb-1" label="پایه"></ng-dropdown>
           <ng-dropdown class="ml-2 mb-1" label="شهر"></ng-dropdown>
           <ng-dropdown class="ml-2 mb-1" label="استان"></ng-dropdown>
-          <ng-jalali-datepicker [showIcon]="false" class="ml-2 mb-1" label="از تاریخ"></ng-jalali-datepicker>
-          <ng-jalali-datepicker [showIcon]="false" class="ml-2 mb-1" label="تا تاریخ"></ng-jalali-datepicker>
-          <ng-button appearance="outlined" color="success" class="mr-auto" size="sm" label="اعمال تغییرات"></ng-button>
-        </div>
+          <ng-jalali-datepicker
+            formControlName="start_time"
+            [showIcon]="false"
+            class="ml-2 mb-1"
+            label="از تاریخ">
+          </ng-jalali-datepicker>
+          <ng-jalali-datepicker
+            formControlName="end_time"
+            [showIcon]="false"
+            class="ml-2 mb-1"
+            label="تا تاریخ">
+          </ng-jalali-datepicker>
+          <ng-button
+            type="submit"
+            appearance="outlined"
+            color="success"
+            class="mr-auto"
+            size="sm"
+            [disabled]="form.hasError('invalidDate')"
+            label="اعمال تغییرات">
+          </ng-button>
+          <ng-button
+            *ngIf="filterEnabled"
+            appearance="outlined"
+            color="danger"
+            pTooltip="حذف فیلتر"
+            tooltipPosition="top"
+            class="mr-2"
+            [rounded]="true"
+            icon="pi pi-times"
+            (onClick)="clearFilter()">
+          </ng-button>
+        </form>
         <div class="row">
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="معلمان" sub="100216"></ng-figure>
+            <ng-figure title="معلمان" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="دانش آموزان" sub="100216"></ng-figure>
+            <ng-figure title="دانش آموزان" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="آزمون" sub="100216"></ng-figure>
+            <ng-figure title="آزمون" [sub]="exam.count"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="تکالیف" sub="100216"></ng-figure>
+            <ng-figure title="تکالیف" [sub]="homework.count"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="درسنامه" sub="100216"></ng-figure>
+            <ng-figure title="درسنامه" [sub]="tutorial.count"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="پسر" sub="100216"></ng-figure>
+            <ng-figure title="پسر" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-md-4 col-lg">
-            <ng-figure title="دختر" sub="100216"></ng-figure>
+            <ng-figure title="دختر" sub="0"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -48,13 +79,13 @@
         </div>
         <div class="row">
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="درحال برگزاری" sub="100216"></ng-figure>
+            <ng-figure title="درحال برگزاری" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="لغو شده ها" sub="100216"></ng-figure>
+            <ng-figure title="لغو شده ها" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="انجام شده" sub="100216"></ng-figure>
+            <ng-figure title="انجام شده" sub="0"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -68,13 +99,13 @@
         </div>
         <div class="row">
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="درحال برگزار" sub="100216"></ng-figure>
+            <ng-figure title="درحال برگزار" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="لغو شده ها" sub="100216"></ng-figure>
+            <ng-figure title="لغو شده ها" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="انجام شده" sub="100216"></ng-figure>
+            <ng-figure title="انجام شده" sub="0"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -88,13 +119,13 @@
         </div>
         <div class="row">
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="درحال برگزاری" sub="100216"></ng-figure>
+            <ng-figure title="درحال برگزاری" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="لغو شده ها" sub="100216"></ng-figure>
+            <ng-figure title="لغو شده ها" sub="0"></ng-figure>
           </div>
           <div class="mt-2 col-md-4 col-lg-12 col-xl-4 col-lg">
-            <ng-figure title="انجام شده" sub="100216"></ng-figure>
+            <ng-figure title="انجام شده" sub="0"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -130,27 +161,27 @@
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1 mb-2">
                 <span>آزمون ها</span>
-                <span class="text-dark">{{'123254' | withComma}}</span>
+                <span class="text-dark">{{exam.count | withComma}}</span>
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1 mb-2">
                 <span>تکالیف</span>
-                <span class="text-dark">{{'123123' | withComma}}</span>
+                <span class="text-dark">{{homework.count | withComma}}</span>
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1 mb-2">
                 <span>درسنامه</span>
-                <span class="text-dark">{{'123123' | withComma}}</span>
+                <span class="text-dark">{{tutorial.count | withComma}}</span>
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1 mb-2">
                 <span>تعداد مدارس</span>
-                <span class="text-dark">{{'123123' | withComma}}</span>
+                <span class="text-dark">{{'0' | withComma}}</span>
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1 mb-2">
                 <span>دخترانه</span>
-                <span class="text-dark">{{'123123' | withComma}}</span>
+                <span class="text-dark">{{'0' | withComma}}</span>
               </div>
               <div class="d-flex align-items-center justify-content-between bg-light py-1">
                 <span>پسرانه</span>
-                <span class="text-dark">{{'123123' | withComma}}</span>
+                <span class="text-dark">{{'0' | withComma}}</span>
               </div>
             </div>
           </div>

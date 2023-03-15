@@ -10,8 +10,8 @@ export class DataService extends ApiService {
     super()
   }
 
-  getUsers() {
-    return this._get<User[]>('users').toPromise();
+  getUsers(sort: string[] = []) {
+    return this._post<User[]>('users', {sort}).toPromise();
   }
 
   addUser(data: User) {
@@ -20,5 +20,9 @@ export class DataService extends ApiService {
 
   editProfile(data: User) {
     return this._post<User>('edit-profile', data).toPromise();
+  }
+
+  getObjectsDetail(type: 'Exam' | 'Homework' | 'Tutorial', filter?: any) {
+    return this._post<User>('dashboard-objects-detail', {type, ...filter}).toPromise();
   }
 }
