@@ -3,14 +3,7 @@ export interface LoginCredentials {
   password: string;
 }
 
-export interface UserProfile {
-  id?: string;
-  username: string;
-  email: string;
-  phone_number: string;
-}
-
-export interface UserItem {
+export interface User {
   id?: string;
   username: string;
   password: string;

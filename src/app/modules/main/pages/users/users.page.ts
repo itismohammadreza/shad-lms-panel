@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {Validators} from "@angular/forms";
-import {UserItem, UserProfile} from "@core/models";
+import {User} from "@core/models";
 import {DataService} from "@core/http";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'ng-users',
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss']
 })
-export class UsersPage implements OnInit {
-  users: UserItem[] = [];
+export class UsersPage implements OnInit, OnDestroy {
+  users: User[] = [];
+  destroy$ = new Subject()
 
   constructor(private overlayService: OverlayService, private dataService: DataService) {
   }
@@ -23,7 +25,7 @@ export class UsersPage implements OnInit {
     this.users = await this.dataService.getUsers()
   }
 
-  openUserDialog(value?: UserItem) {
+  openUserDialog(value?: User) {
     return this.overlayService.showDialogForm([
         {
           component: 'hidden',
@@ -84,7 +86,10 @@ export class UsersPage implements OnInit {
   }
 
   onAddUser() {
-    this.openUserDialog().subscribe(async (res) => {
+    this.openUserDialog().pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
+      if (!res) {
+        return
+      }
       try {
         const {user} = await this.dataService.addUser(res.formValue);
         this.users.push(user)
@@ -99,18 +104,21 @@ export class UsersPage implements OnInit {
     console.log(event)
   }
 
-  async changeUserStatus(user: UserItem, event: any) {
+  async changeUserStatus(user: User, event: any) {
     const {value, loadingCallback} = event;
     try {
-      await this.dataService.editProfile({...user, status: value} as UserProfile);
+      await this.dataService.editProfile({...user, status: value} as User);
       loadingCallback()
     } catch (e) {
       loadingCallback(false)
     }
   }
 
-  editUser(user: UserItem, index: number) {
-    this.openUserDialog(user).subscribe(async (res) => {
+  editUser(user: User, index: number) {
+    this.openUserDialog(user).pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
+      if (!res) {
+        return
+      }
       try {
         await this.dataService.editProfile(res.formValue);
         this.users[index] = res.formValue
@@ -119,5 +127,10 @@ export class UsersPage implements OnInit {
         res.changeDialogVisibilityTo(true)
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete()
   }
 }

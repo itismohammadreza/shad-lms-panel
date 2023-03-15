@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService, DataService} from "@core/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserProfile} from "@core/models";
+import {User} from "@core/models";
 
 @Component({
   selector: 'ng-profile-edit',
@@ -41,6 +41,6 @@ export class ProfileEditPage implements OnInit {
     if (!this.form.value.password) {
       delete this.form.value.password
     }
-    await this.dataService.editProfile(this.form.value as UserProfile)
+    await this.dataService.editProfile(this.form.value as User)
   }
 }

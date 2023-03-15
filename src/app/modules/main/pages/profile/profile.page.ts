@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {AuthService, DataService} from "@core/http";
-import {UserProfile} from "@core/models";
+import {User} from "@core/models";
 
 @Component({
   selector: 'ng-profile',
@@ -9,7 +9,7 @@ import {UserProfile} from "@core/models";
   styleUrls: ['./profile.page.scss']
 })
 export class ProfilePage implements OnInit {
-  profile: UserProfile;
+  profile: User;
 
   constructor(private overlayService: OverlayService,
               private dataService: DataService,
