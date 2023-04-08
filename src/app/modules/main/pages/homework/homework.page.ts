@@ -98,6 +98,6 @@ export class HomeworkPage implements OnInit {
   }
 
   async loadData() {
-    this.gradeCount = await this.dataService.getGradeCount('Exam')
+    this.gradeCount = await this.dataService.getGradeCount('Homework')
   }
 }

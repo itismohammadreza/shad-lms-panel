@@ -27,7 +27,7 @@ export class DataService extends ApiService {
   }
 
   getGradeCount(type: EntityType) {
-    return this._post<GradeCount>('object-count-per-grade', {type}).toPromise();
+    return this._get<GradeCount>('object-count-per-grade', {params: {type}}).toPromise();
   }
 
   getUsage(filter?: UsageFilter) {

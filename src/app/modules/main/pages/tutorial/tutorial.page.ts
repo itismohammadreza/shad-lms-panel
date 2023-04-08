@@ -98,6 +98,6 @@ export class TutorialPage implements OnInit {
   }
 
   async loadData() {
-    this.gradeCount = await this.dataService.getGradeCount('Exam')
+    this.gradeCount = await this.dataService.getGradeCount('Tutorial')
   }
 }
