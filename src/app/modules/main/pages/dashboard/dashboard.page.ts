@@ -39,7 +39,8 @@ export class DashboardPage implements OnInit {
   exam: any = {};
   homework: any = {};
   tutorial: any = {};
-  filterEnabled: boolean = false;
+  countBarFilterEnabled: boolean = false;
+  usageFilterEnabled: boolean = false;
 
   ngOnInit(): void {
     this.loadData();
@@ -60,15 +61,15 @@ export class DashboardPage implements OnInit {
     this.exam = await this.dataService.getObjectsDetail('Exam');
     this.homework = await this.dataService.getObjectsDetail('Homework');
     this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
-    this.filterEnabled = true;
+    this.countBarFilterEnabled = true;
   }
 
-  async clearFilter() {
+  async clearCountBarFilter() {
     this.exam = await this.dataService.getObjectsDetail('Exam');
     this.homework = await this.dataService.getObjectsDetail('Homework');
     this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
     this.countBarForm.reset();
-    this.filterEnabled = false;
+    this.countBarFilterEnabled = false;
   }
 
   bothDatesValidator(group: FormGroup) {
@@ -82,5 +83,12 @@ export class DashboardPage implements OnInit {
   async onSubmitUsageFilter() {
     const filter = this.utilsService.getDirtyControls(this.countBarForm);
     this.usage = await this.dataService.getUsage(filter)
+    this.usageFilterEnabled = true;
+  }
+
+  async clearUsageFilter() {
+    this.usage = await this.dataService.getUsage()
+    this.usageForm.reset();
+    this.usageFilterEnabled = false;
   }
 }

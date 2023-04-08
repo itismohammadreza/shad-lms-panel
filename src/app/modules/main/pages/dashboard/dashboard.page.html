@@ -35,7 +35,7 @@
             label="اعمال تغییرات">
           </ng-button>
           <ng-button
-            *ngIf="filterEnabled"
+            *ngIf="countBarFilterEnabled"
             appearance="outlined"
             color="danger"
             pTooltip="حذف فیلتر"
@@ -43,7 +43,7 @@
             class="mr-2"
             [rounded]="true"
             icon="pi pi-times"
-            (onClick)="clearFilter()">
+            (onClick)="clearCountBarFilter()">
           </ng-button>
         </form>
         <div class="row">
@@ -147,9 +147,17 @@
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
                 <ng-dropdown formControlName="school_type" class="mt-3" label="نوع مدرسه"></ng-dropdown>
                 <ng-dropdown formControlName="grade" class="mt-3" label="مقطع"></ng-dropdown>
-                <ng-button class="mt-5" [full]="true" size="md" appearance="outlined" color="success"
-                           type="submit"
-                           label="اعمال تغییرات"></ng-button>
+                <div class="d-flex mt-5">
+                  <ng-button [full]="true" size="md" appearance="outlined" color="success"
+                             type="submit"
+                             class="flex-grow-1"
+                             label="اعمال تغییرات"></ng-button>
+                  <ng-button size="md" appearance="outlined" color="danger"
+                             *ngIf="usageFilterEnabled"
+                             (onClick)="clearUsageFilter()"
+                             class="mr-2"
+                             icon="pi pi-refresh"></ng-button>
+                </div>
               </form>
             </div>
           </div>
