@@ -4,7 +4,7 @@
       <p-card>
         <form class="filter-box d-flex flex-wrap align-items-center mb-3"
               [formGroup]="countBarForm"
-              (ngSubmit)="onSubmitFilter()">
+              (ngSubmit)="onSubmitCountBarFilter()">
           <ng-dropdown formControlName="grade" class="ml-2 mb-1" label="مقطع"></ng-dropdown>
           <ng-dropdown formControlName="sex" class="ml-2 mb-1" label="جنسیت"></ng-dropdown>
           <ng-dropdown formControlName="major" class="ml-2 mb-1" label="رشته"></ng-dropdown>

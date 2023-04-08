@@ -10,11 +10,6 @@ import {CountBar, Usage, UsageFilter} from "@core/models";
   styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
-  constructor(private dataService: DataService,
-              private momentService: MomentService,
-              private utilsService: UtilsService) {
-  }
-
   countBarForm = new FormGroup({
     grade: new FormControl(),
     sex: new FormControl(),
@@ -35,12 +30,17 @@ export class DashboardPage implements OnInit {
   })
   countBar: CountBar = {};
   usage: Usage = {};
+  countBarFilterEnabled: boolean = false;
+  usageFilterEnabled: boolean = false;
 
   exam: any = {};
   homework: any = {};
   tutorial: any = {};
-  countBarFilterEnabled: boolean = false;
-  usageFilterEnabled: boolean = false;
+
+  constructor(private dataService: DataService,
+              private momentService: MomentService,
+              private utilsService: UtilsService) {
+  }
 
   ngOnInit(): void {
     this.loadData();
@@ -54,7 +54,7 @@ export class DashboardPage implements OnInit {
     // this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
   }
 
-  async onSubmitFilter() {
+  async onSubmitCountBarFilter() {
     let {start_time, end_time} = this.countBarForm.value;
     start_time = this.momentService.getIsoDateWithoutTimeZone(start_time.toDate()).split('.')[0];
     end_time = this.momentService.getIsoDateWithoutTimeZone(end_time.toDate()).split('.')[0];
@@ -72,14 +72,6 @@ export class DashboardPage implements OnInit {
     this.countBarFilterEnabled = false;
   }
 
-  bothDatesValidator(group: FormGroup) {
-    const start_time = group.get('start_time').value;
-    const end_time = group.get('end_time').value;
-    const bothFilled = !!start_time && !!end_time;
-    const bothEmpty = !start_time && !end_time;
-    return (bothFilled || bothEmpty) ? null : {invalidDate: true};
-  }
-
   async onSubmitUsageFilter() {
     const filter = this.utilsService.getDirtyControls(this.countBarForm);
     this.usage = await this.dataService.getUsage(filter)
@@ -90,5 +82,13 @@ export class DashboardPage implements OnInit {
     this.usage = await this.dataService.getUsage()
     this.usageForm.reset();
     this.usageFilterEnabled = false;
+  }
+
+  bothDatesValidator(group: FormGroup) {
+    const start_time = group.get('start_time').value;
+    const end_time = group.get('end_time').value;
+    const bothFilled = !!start_time && !!end_time;
+    const bothEmpty = !start_time && !end_time;
+    return (bothFilled || bothEmpty) ? null : {invalidDate: true};
   }
 }
