@@ -7,6 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class FigureComponent {
   @Input() title: string;
-  @Input() sub: string;
+  @Input() sub: string | number;
   @Input() layout: 'horizontal' | 'vertical' = 'vertical';
 }

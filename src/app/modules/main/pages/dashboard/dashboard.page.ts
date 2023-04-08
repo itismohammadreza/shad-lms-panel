@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
-import {MomentService} from "@ng/services";
+import {MomentService, UtilsService} from "@ng/services";
+import {CountBar, Usage, UsageFilter} from "@core/models";
 
 @Component({
   selector: 'ng-dashboard',
@@ -9,13 +10,32 @@ import {MomentService} from "@ng/services";
   styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
-  constructor(private dataService: DataService, private momentService: MomentService) {
+  constructor(private dataService: DataService,
+              private momentService: MomentService,
+              private utilsService: UtilsService) {
   }
 
-  form = new FormGroup({
+  countBarForm = new FormGroup({
+    grade: new FormControl(),
+    sex: new FormControl(),
+    major: new FormControl(),
+    stage: new FormControl(),
+    province_id: new FormControl(),
+    district_id: new FormControl(),
     start_time: new FormControl(),
     end_time: new FormControl(),
   }, this.bothDatesValidator);
+  usageForm = new FormGroup({
+    sex: new FormControl(),
+    province_id: new FormControl(),
+    district_id: new FormControl(),
+    school_type: new FormControl(),
+    grade: new FormControl(),
+    school_id: new FormControl(),
+  })
+  countBar: CountBar = {};
+  usage: Usage = {};
+
   exam: any = {};
   homework: any = {};
   tutorial: any = {};
@@ -26,18 +46,20 @@ export class DashboardPage implements OnInit {
   }
 
   async loadData() {
-    this.exam = await this.dataService.getObjectsDetail('Exam');
-    this.homework = await this.dataService.getObjectsDetail('Homework');
-    this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
+    this.countBar = await this.dataService.getCountBar();
+    this.usage = await this.dataService.getUsage();
+    // this.exam = await this.dataService.getObjectsDetail('Exam');
+    // this.homework = await this.dataService.getObjectsDetail('Homework');
+    // this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
   }
 
   async onSubmitFilter() {
-    let {start_time, end_time} = this.form.value;
+    let {start_time, end_time} = this.countBarForm.value;
     start_time = this.momentService.getIsoDateWithoutTimeZone(start_time.toDate()).split('.')[0];
     end_time = this.momentService.getIsoDateWithoutTimeZone(end_time.toDate()).split('.')[0];
-    this.exam = await this.dataService.getObjectsDetail('Exam', {start_time, end_time});
-    this.homework = await this.dataService.getObjectsDetail('Homework', {start_time, end_time});
-    this.tutorial = await this.dataService.getObjectsDetail('Tutorial', {start_time, end_time});
+    this.exam = await this.dataService.getObjectsDetail('Exam');
+    this.homework = await this.dataService.getObjectsDetail('Homework');
+    this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
     this.filterEnabled = true;
   }
 
@@ -45,7 +67,7 @@ export class DashboardPage implements OnInit {
     this.exam = await this.dataService.getObjectsDetail('Exam');
     this.homework = await this.dataService.getObjectsDetail('Homework');
     this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
-    this.form.reset();
+    this.countBarForm.reset();
     this.filterEnabled = false;
   }
 
@@ -55,5 +77,10 @@ export class DashboardPage implements OnInit {
     const bothFilled = !!start_time && !!end_time;
     const bothEmpty = !start_time && !end_time;
     return (bothFilled || bothEmpty) ? null : {invalidDate: true};
+  }
+
+  async onSubmitUsageFilter() {
+    const filter = this.utilsService.getDirtyControls(this.countBarForm);
+    this.usage = await this.dataService.getUsage(filter)
   }
 }

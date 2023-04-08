@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from "@core/http/api.service";
-import {User} from "@core/models";
+import {CountBar, CountBarFilter, EntityType, GradeCount, Usage, UsageFilter, User} from "@core/models";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,19 @@ export class DataService extends ApiService {
     return this._post<User>('edit-profile', data).toPromise();
   }
 
-  getObjectsDetail(type: 'Exam' | 'Homework' | 'Tutorial', filter?: any) {
-    return this._post<User>('dashboard-objects-detail', {type, ...filter}).toPromise();
+  getObjectsDetail(type: EntityType) {
+    return this._post<User>('dashboard-objects-detail', {type}).toPromise();
+  }
+
+  objectCountPerGrade(type: EntityType) {
+    return this._post<GradeCount>('object-count-per-grade', {type}).toPromise();
+  }
+
+  getUsage(filter?: UsageFilter) {
+    return this._get<Usage>('lms-usage', {params: {...filter}}).toPromise();
+  }
+
+  getCountBar(filter?: CountBarFilter) {
+    return this._get<CountBar>('count-bar', {params: {...filter}}).toPromise();
   }
 }
