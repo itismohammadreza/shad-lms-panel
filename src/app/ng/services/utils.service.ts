@@ -1,5 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOCUMENT, LocationStrategy} from '@angular/common';
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -106,4 +107,14 @@ export class UtilsService {
     const res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null)
   };
+
+  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object'): {} {
+    const kv = Object.entries(form.controls).filter(val => val[1].dirty);
+    const result = {
+      object: kv.reduce((accum, val) => Object.assign(accum, {[val[0]]: val[1].value}), {}),
+      array: kv.map(val => val[1]),
+      names: kv.map(val => val[0])
+    };
+    return result[type];
+  }
 }
