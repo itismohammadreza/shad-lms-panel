@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {GradeCount} from "@core/models";
+import {DataService} from "@core/http";
 
 @Component({
   selector: 'ng-homework',
@@ -6,10 +8,6 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./homework.page.scss']
 })
 export class HomeworkPage implements OnInit {
-
-  constructor() {
-  }
-
   stackedData = {
     labels: ['تهران', 'اصفهان', 'شیراز', 'اردبیل', 'قم', 'تبریز', 'مشهد'],
     datasets: [{
@@ -90,8 +88,16 @@ export class HomeworkPage implements OnInit {
       }
     }
   };
+  gradeCount: GradeCount = {};
 
-  ngOnInit(): void {
+  constructor(private dataService: DataService) {
   }
 
+  ngOnInit(): void {
+    this.loadData()
+  }
+
+  async loadData() {
+    this.gradeCount = await this.dataService.getGradeCount('Exam')
+  }
 }

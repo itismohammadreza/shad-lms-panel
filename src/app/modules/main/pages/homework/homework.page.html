@@ -5,19 +5,19 @@
         <h5>میزان تکالیف مقاطع تحصیلی</h5>
         <div class="row mt-4">
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="ابتدایی" sub="100216"></ng-figure>
+            <ng-figure title="ابتدایی" [sub]="gradeCount.elementary"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="متوسطه اول" sub="100216"></ng-figure>
+            <ng-figure title="متوسطه اول" [sub]="gradeCount.middle"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="متوسطه دوم" sub="100216"></ng-figure>
+            <ng-figure title="متوسطه دوم" [sub]="gradeCount.high"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="فنی و حرفه ای" sub="100216"></ng-figure>
+            <ng-figure title="فنی و حرفه ای" [sub]="gradeCount.was"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="کار دانش" sub="100216"></ng-figure>
+            <ng-figure title="کار دانش" [sub]="gradeCount.tap"></ng-figure>
           </div>
         </div>
       </p-card>

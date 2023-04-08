@@ -56,9 +56,9 @@ export interface UsageFilter {
 }
 
 export interface GradeCount {
-  elementary: number;
-  middle: number;
-  high: number;
-  was: number;
-  tap: number;
+  elementary?: number;
+  middle?: number;
+  high?: number;
+  was?: number;
+  tap?: number;
 }

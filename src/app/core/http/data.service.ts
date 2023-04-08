@@ -26,7 +26,7 @@ export class DataService extends ApiService {
     return this._post<User>('dashboard-objects-detail', {type}).toPromise();
   }
 
-  objectCountPerGrade(type: EntityType) {
+  getGradeCount(type: EntityType) {
     return this._post<GradeCount>('object-count-per-grade', {type}).toPromise();
   }
 
