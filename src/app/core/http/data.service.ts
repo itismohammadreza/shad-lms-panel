@@ -22,10 +22,6 @@ export class DataService extends ApiService {
     return this._post<User>('edit-profile', data).toPromise();
   }
 
-  getObjectsDetail(type: EntityType) {
-    return this._post<User>('dashboard-objects-detail', {type}).toPromise();
-  }
-
   getGradeCount(type: EntityType) {
     return this._get<GradeCount>('object-count-per-grade', {params: {type}}).toPromise();
   }

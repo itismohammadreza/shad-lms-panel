@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
-import {CountBar, Usage, UsageFilter} from "@core/models";
+import {CountBar, Usage} from "@core/models";
 
 @Component({
   selector: 'ng-dashboard',
@@ -33,10 +33,6 @@ export class DashboardPage implements OnInit {
   countBarFilterEnabled: boolean = false;
   usageFilterEnabled: boolean = false;
 
-  exam: any = {};
-  homework: any = {};
-  tutorial: any = {};
-
   constructor(private dataService: DataService,
               private momentService: MomentService,
               private utilsService: UtilsService) {
@@ -49,25 +45,24 @@ export class DashboardPage implements OnInit {
   async loadData() {
     this.countBar = await this.dataService.getCountBar();
     this.usage = await this.dataService.getUsage();
-    // this.exam = await this.dataService.getObjectsDetail('Exam');
-    // this.homework = await this.dataService.getObjectsDetail('Homework');
-    // this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
   }
 
   async onSubmitCountBarFilter() {
-    let {start_time, end_time} = this.countBarForm.value;
-    start_time = this.momentService.getIsoDateWithoutTimeZone(start_time.toDate()).split('.')[0];
-    end_time = this.momentService.getIsoDateWithoutTimeZone(end_time.toDate()).split('.')[0];
-    this.exam = await this.dataService.getObjectsDetail('Exam');
-    this.homework = await this.dataService.getObjectsDetail('Homework');
-    this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
+    const filters: any = this.utilsService.getDirtyControls(this.countBarForm);
+    if (JSON.stringify(filters) == "{}") {
+      return;
+    }
+    let {start_time, end_time} = filters;
+    if (start_time && end_time) {
+      filters.start_time = this.momentService.getIsoDateWithoutTimeZone(start_time.toDate()).split('.')[0];
+      filters.end_time = this.momentService.getIsoDateWithoutTimeZone(end_time.toDate()).split('.')[0];
+    }
+    this.countBar = await this.dataService.getCountBar(filters)
     this.countBarFilterEnabled = true;
   }
 
   async clearCountBarFilter() {
-    this.exam = await this.dataService.getObjectsDetail('Exam');
-    this.homework = await this.dataService.getObjectsDetail('Homework');
-    this.tutorial = await this.dataService.getObjectsDetail('Tutorial');
+    this.countBar = await this.dataService.getCountBar();
     this.countBarForm.reset();
     this.countBarFilterEnabled = false;
   }
