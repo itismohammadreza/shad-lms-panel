@@ -115,6 +115,9 @@ export class UtilsService {
       array: kv.map(val => val[1]),
       names: kv.map(val => val[0])
     };
+    if (JSON.stringify(result[type]) == '{}') {
+      return null
+    }
     return result[type];
   }
 }
