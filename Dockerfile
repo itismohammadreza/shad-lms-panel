@@ -10,4 +10,4 @@ RUN npm install --location=global @angular/cli
 RUN npm install
 RUN npm run build
 
-CMD ["http-server", "dist/", "-a", "0.0.0.0", "-p", "83"]
+CMD ["http-server", "dist/", "-a", "0.0.0.0", "-p", "89"]

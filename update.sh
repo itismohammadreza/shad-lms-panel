@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd shad-lms/
-git pull origin main
-docker build -t lms-front:v1 .
-docker rm -f lms-front
+cd /root/shad-lms-panel-master/
+docker build -t lms-panel-front:v1 .
 ./docker_run.sh
