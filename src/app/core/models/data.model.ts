@@ -1,5 +1,6 @@
 export type EntityType = 'Exam' | 'Homework' | 'Tutorial';
-
+export type Gender = 1 | 2; // 1:Male, 2:Female
+export type SchoolGender = 1 | 2 | 3; // 1:Male, 2:Female, 3:Mixed
 export interface LoginCredentials {
   username: string;
   password: string;
@@ -28,7 +29,7 @@ export interface CountBar {
 
 export interface CountBarFilter {
   grade?: 'Elementary';
-  sex?: 'Male';
+  gender_id?: Gender;
   major?: string;
   stage?: string;
   province_id?: number;
@@ -47,12 +48,13 @@ export interface Usage {
 }
 
 export interface UsageFilter {
-  sex?: 'Male' | 'Female';
+  gender_id?: Gender;
   province_id?: number;
   district_id?: number;
   school_type?: 'Governmental' | '';
   grade?: 'Elementary';
   school_id?: number;
+  school_gender?: SchoolGender;
 }
 
 export interface GradeCount {

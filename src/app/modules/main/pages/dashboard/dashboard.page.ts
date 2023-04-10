@@ -12,7 +12,7 @@ import {CountBar, Usage} from "@core/models";
 export class DashboardPage implements OnInit {
   countBarForm = new FormGroup({
     grade: new FormControl(),
-    sex: new FormControl(),
+    gender_id: new FormControl(),
     major: new FormControl(),
     stage: new FormControl(),
     province_id: new FormControl(),
@@ -21,7 +21,7 @@ export class DashboardPage implements OnInit {
     end_time: new FormControl(),
   }, this.bothDatesValidator);
   usageForm = new FormGroup({
-    sex: new FormControl(),
+    school_gender: new FormControl(),
     province_id: new FormControl(),
     district_id: new FormControl(),
     school_type: new FormControl(),
@@ -60,6 +60,8 @@ export class DashboardPage implements OnInit {
     {value: '43', label: 'پژوهش سرا و آزمایشگاه مرکزی'},
     {value: '15', label: 'وابسته نوع اول'},
   ]
+  genders = [{label: 'پسر', value: 1}, {label: 'دختر', value: 2}]
+  schoolGenders = [{label: 'پسرانه', value: 1}, {label: 'دخترانه', value: 2}, {label: 'مختلط', value: 3}]
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
