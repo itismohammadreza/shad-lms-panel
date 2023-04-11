@@ -32,36 +32,9 @@ export class DashboardPage implements OnInit {
   usage: Usage = {};
   countBarFilterEnabled: boolean = false;
   usageFilterEnabled: boolean = false;
-  schoolTypes = [
-    {value: '33', label: 'کانون فرهنگی و تربیتی'},
-    {value: '24', label: 'هیئت امنایی'},
-    {value: '10', label: 'استعدادهاي درخشان'},
-    {value: '42', label: 'دارالقرآن'},
-    {value: '63', label: 'مجتمع آموزشي وپرورشي'},
-    {value: '23', label: 'آموزش از راه دور غیر دولتی'},
-    {value: '9', label: 'سایر'},
-    {value: '7', label: 'عشایری'},
-    {value: '13', label: 'مشارکت مردمی'},
-    {value: '25', label: 'غير دواتی خیریه'},
-    {value: '12', label: 'بزرگسالان'},
-    {value: '42', label: 'مدرسه تخصصی قرآن'},
-    {value: '35', label: 'مجتمع ورزشی'},
-    {value: '2', label: 'نمونه دولتی'},
-    {value: '1', label: 'عادی دولتی'},
-    {value: '4', label: 'غیر دولتی'},
-    {value: '14', label: 'وابسته نوع دوم'},
-    {value: '34', label: 'مدرسه قرآن'},
-    {value: '18', label: 'بین المللی'},
-    {value: '5', label: 'ایثارگران'},
-    {value: '6', label: 'شاهد'},
-    {value: '8', label: 'شبانه روزی'},
-    {value: '44', label: 'خوابگاه مرکزی(فقط مخصوص جدول خوابگاه)'},
-    {value: '56', label: 'مرکز L.D'},
-    {value: '43', label: 'پژوهش سرا و آزمایشگاه مرکزی'},
-    {value: '15', label: 'وابسته نوع اول'},
-  ]
-  genders = [{label: 'پسر', value: 1}, {label: 'دختر', value: 2}]
-  schoolGenders = [{label: 'پسرانه', value: 1}, {label: 'دخترانه', value: 2}, {label: 'مختلط', value: 3}]
+  schoolTypes = this.dataService.schoolTypes;
+  genders = this.dataService.genders;
+  schoolGenders = this.dataService.schoolGenders;
 
   constructor(private dataService: DataService,
               private momentService: MomentService,

@@ -24,10 +24,10 @@
     </div>
     <div class="col-lg-6 mb-3">
       <p-card>
-        <h5>آمار درسنامه ها</h5>
-        <div class="row justify-content-center">
-          <div class="col-md-8 col-lg-5 col-xl-4 mt-2">
-            <ng-figure title="بارگزاری شده" layout="horizontal" sub="100216"></ng-figure>
+        <h5>درسنامه ها</h5>
+        <div class="row mt-4">
+          <div class="col-12 mt-2">
+            <ng-figure title="بارگزاری شده" layout="horizontal" [sub]="count.created"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -35,38 +35,70 @@
     <div class="col-12">
       <p-card>
         <h5>درسنامه</h5>
-        <form class="form-row align-items-center my-4">
-          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="همه"></ng-checkbox>
-          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="بارگزاری شده"></ng-checkbox>
-          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="تمام شده"></ng-checkbox>
-          <ng-checkbox class="col-6 col-sm-3 col-md-2 col-xl-1 mb-2" label="دانلود شده"></ng-checkbox>
-          <ng-jalali-datepicker class="col-sm-6 col-md-2 col-xl-1 mb-2" label="از تاریخ"></ng-jalali-datepicker>
-          <ng-jalali-datepicker class="col-sm-6 col-md-2 col-xl-1 mb-2" label="تا تاریخ"></ng-jalali-datepicker>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="نوع آزمون"></ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="درس"></ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="رشته تحصیلی"></ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="پایه تحصیلی"></ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="مقاطع تحصیلی"></ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="جنسیت"></ng-dropdown>
+        <form [formGroup]="form" (ngSubmit)="onSubmitFilter()" class="form-row my-4">
+          <ng-jalali-datepicker formControlName="start_time" class="col-sm-6 col-md-4 col-xl mb-2" [showIcon]="false"
+                                [showClear]="true" label="از تاریخ"></ng-jalali-datepicker>
+          <ng-jalali-datepicker formControlName="end_time" class="col-sm-6 col-md-4 col-xl mb-2" [showIcon]="false"
+                                [showClear]="true" label="تا تاریخ"></ng-jalali-datepicker>
+          <ng-dropdown formControlName="lesson_id" class="col-sm-6 col-md-4 col-xl mb-2" label="درس"></ng-dropdown>
+          <ng-dropdown formControlName="major" class="col-sm-6 col-md-4 col-xl mb-2" label="رشته"></ng-dropdown>
+          <ng-dropdown formControlName="stage" class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
+          <ng-dropdown formControlName="grade" class="col-sm-6 col-md-4 col-xl mb-2" label="مقطع"></ng-dropdown>
+          <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl mb-2" [options]="genders"
+                       label="جنسیت"></ng-dropdown>
+          <div class="d-flex align-items-center col-md-4 col-xl mb-2">
+            <ng-button
+              type="submit"
+              [full]="true"
+              appearance="outlined"
+              color="success"
+              size="md"
+              [disabled]="form.hasError('invalidDate')"
+              label="اعمال تغییرات">
+            </ng-button>
+            <ng-button
+              *ngIf="filterEnabled"
+              appearance="outlined"
+              color="danger"
+              pTooltip="حذف فیلتر"
+              tooltipPosition="top"
+              class="mr-2"
+              [rounded]="true"
+              icon="pi pi-times"
+              (onClick)="clearFilter()">
+            </ng-button>
+          </div>
         </form>
         <div class="row">
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="مشاهده شده" sub="100216"></ng-figure>
+            <ng-figure title="مشاهده شده" [sub]="count.seen"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="برگزار شده" sub="100216"></ng-figure>
+            <ng-figure title="ایجاد شده" [sub]="count.created"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="دانلود شده" sub="100216"></ng-figure>
+            <ng-figure title="دانلود شده" [sub]="count.downloaded"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="میزان شرکت دانش آموزان" sub="100216"></ng-figure>
+            <ng-figure title="براساس جنسیت" [sub]="count.created_per_gender"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="براساس جنسیت" sub="100216"></ng-figure>
-          </div>
-          <div class="mt-2 col-sm-6 col-lg-4 col-xl">
-            <ng-figure title="تستی و تشریحی" sub="100216"></ng-figure>
+            <ng-figure title="بر اساس فایل" [sub]="null">
+              <div class="d-flex align-items-center justify-content-around">
+                <div>
+                  <div class="text-muted">MP4</div>
+                  <h3>{{''}}</h3>
+                </div>
+                <div>
+                  <div class="text-muted">PDF</div>
+                  <h3>{{''}}</h3>
+                </div>
+                <div>
+                  <div class="text-muted">JPG</div>
+                  <h3>{{''}}</h3>
+                </div>
+              </div>
+            </ng-figure>
           </div>
           <div class="col-12 mt-5">
             <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>

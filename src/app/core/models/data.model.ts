@@ -27,6 +27,42 @@ export interface CountBar {
   girls?: number;
 }
 
+export interface Usage {
+  exams?: number;
+  homeworks?: number;
+  tutorials?: number;
+  schools?: number;
+  m_schools?: number;
+  f_schools?: number;
+}
+
+export interface GradeCount {
+  elementary?: number;
+  middle?: number;
+  high?: number;
+  was?: number;
+  tap?: number;
+}
+
+export interface ExamCount {
+  available?: number;
+  done?: number;
+  corrected?: number;
+  created_per_gender?: number;
+  created_per_type?: number;
+  student_participation?: number;
+}
+
+export interface TutorialCount {
+  seen?: number;
+  created?: number;
+  downloaded?: number;
+  created_per_gender?: number;
+  jpg_created?: number;
+  pdf_created?: number;
+  mp4_created?: number;
+}
+
 export interface CountBarFilter {
   grade?: 'Elementary';
   gender_id?: Gender;
@@ -36,15 +72,6 @@ export interface CountBarFilter {
   district_id?: number;
   start_time?: string;
   end_time?: string;
-}
-
-export interface Usage {
-  exams?: number;
-  homeworks?: number;
-  tutorials?: number;
-  schools?: number;
-  m_schools?: number;
-  f_schools?: number;
 }
 
 export interface UsageFilter {
@@ -57,10 +84,10 @@ export interface UsageFilter {
   school_gender?: SchoolGender;
 }
 
-export interface GradeCount {
-  elementary?: number;
-  middle?: number;
-  high?: number;
-  was?: number;
-  tap?: number;
+export interface EntityCountFilter {
+  start_time?: string;
+  end_time?: string;
+  school_gender?: SchoolGender;
+  lesson_id?: number;
+  type?: 'MultiChoice' | 'Descriptive';
 }

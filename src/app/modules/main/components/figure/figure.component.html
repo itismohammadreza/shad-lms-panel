@@ -6,5 +6,6 @@
 <div *ngIf="layout == 'horizontal'"
      class="figure border p-4 text-center w-100 justify-content-around d-flex align-items-center">
   <h6 class="text-muted mb-0">{{title}}</h6>
-  <h4 class="mb-0">{{(sub | withComma) || '-'}}</h4>
+  <h4 *ngIf="sub != null" class="mb-0">{{(sub | withComma) || '-'}}</h4>
+  <ng-content></ng-content>
 </div>
