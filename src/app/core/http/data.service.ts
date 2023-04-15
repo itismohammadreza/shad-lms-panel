@@ -75,7 +75,9 @@ export class DataService extends ApiService {
   }
 
   getUsage(filter?: UsageFilter) {
-    return this._get<Usage>('lms-usage', {params: {...filter}}).toPromise();
+    return this._get<Usage>('lms-usage', {params: {...filter}}).pipe(map(res =>
+      ({...res, total: Object.values(res).reduce((acc, cur) => acc + cur, 0)})
+    )).toPromise();
   }
 
   getCountBar(filter?: CountBarFilter) {
