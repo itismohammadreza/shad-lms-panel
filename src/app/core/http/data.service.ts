@@ -3,13 +3,18 @@ import {ApiService} from "@core/http/api.service";
 import {
   CountBar,
   CountBarFilter,
-  EntityType,
-  GradeCount, TutorialCount,
+  District,
   EntityCountFilter,
+  EntityType,
+  ExamCount,
+  GradeCount,
+  Province,
+  TutorialCount,
   Usage,
   UsageFilter,
-  User, ExamCount
+  User
 } from "@core/models";
+import {map} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -94,5 +99,13 @@ export class DataService extends ApiService {
 
   getTutorialCount(filter?: EntityCountFilter) {
     return this._get<TutorialCount>('tutorial-count-page', {params: {...filter}}).toPromise();
+  }
+
+  getProvinces() {
+    return this._get<Province[]>('provinces', {params: {limit: 100, offset: 0}}).toPromise();
+  }
+
+  getDistricts(provinceId: number) {
+    return this._get<District[]>('provinces', {params: {limit: 100, offset: 0, province_id: provinceId}}).toPromise();
   }
 }

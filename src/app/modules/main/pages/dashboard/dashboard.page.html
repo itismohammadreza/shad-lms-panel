@@ -148,8 +148,10 @@
               <form [formGroup]="usageForm" (ngSubmit)="onSubmitUsageFilter()">
                 <ng-dropdown formControlName="school_gender" class="mt-4" label="جنسیت"
                              [options]="schoolGenders"></ng-dropdown>
-                <ng-dropdown formControlName="province_id" class="mt-3" label="استان"></ng-dropdown>
-                <ng-dropdown formControlName="district_id" class="mt-3" label="منطقه"></ng-dropdown>
+                <ng-dropdown formControlName="province_id" [options]="provinces" class="mt-3"
+                             label="استان" (onChange)="onStateChange($event)"></ng-dropdown>
+                <ng-dropdown formControlName="district_id" [options]="districts" class="mt-3"
+                             label="منطقه"></ng-dropdown>
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
                 <ng-dropdown formControlName="school_type" class="mt-3" label="نوع مدرسه"
                              [options]="schoolTypes"></ng-dropdown>

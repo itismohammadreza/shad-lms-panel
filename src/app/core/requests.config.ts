@@ -14,4 +14,6 @@ export const RequestsConfig: RequestConfig[] = [
   {pathTemplate: '/panel/exam-count-page/', method: 'GET', loading: true, success: false, failure: true, catch: false},
   {pathTemplate: '/panel/homework-count-page/', method: 'GET', loading: true, success: false, failure: true, catch: false},
   {pathTemplate: '/panel/tutorial-count-page/', method: 'GET', loading: true, success: false, failure: true, catch: false},
+  {pathTemplate: '/panel/provinces/', method: 'GET', loading: true, success: false, failure: true, catch: false},
+  {pathTemplate: '/panel/provinces/*', method: 'GET', loading: true, success: false, failure: true, catch: false},
 ];

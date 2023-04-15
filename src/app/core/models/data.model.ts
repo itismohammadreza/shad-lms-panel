@@ -34,6 +34,7 @@ export interface Usage {
   schools?: number;
   m_schools?: number;
   f_schools?: number;
+  total?: number;
 }
 
 export interface GradeCount {
@@ -90,4 +91,15 @@ export interface EntityCountFilter {
   school_gender?: SchoolGender;
   lesson_id?: number;
   type?: 'MultiChoice' | 'Descriptive';
+}
+
+export interface Province {
+  province_id: number;
+  title: string;
+}
+
+export interface District {
+  province_id: number;
+  district_id: number;
+  title: string;
 }
