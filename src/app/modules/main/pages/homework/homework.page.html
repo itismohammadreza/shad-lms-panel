@@ -41,9 +41,21 @@
           <ng-jalali-datepicker formControlName="end_time" class="col-sm-6 col-md-4 col-xl mb-2" [showIcon]="false"
                                 [showClear]="true" label="تا تاریخ"></ng-jalali-datepicker>
           <ng-dropdown formControlName="lesson_id" class="col-sm-6 col-md-4 col-xl mb-2" label="درس"></ng-dropdown>
-          <ng-dropdown formControlName="major" class="col-sm-6 col-md-4 col-xl mb-2" label="رشته"></ng-dropdown>
+          <ng-dropdown formControlName="major"
+                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       [options]="fields"
+                       optionLabel="title"
+                       optionValue="id"
+                       label="رشته">
+          </ng-dropdown>
           <ng-dropdown formControlName="stage" class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
-          <ng-dropdown formControlName="grade" class="col-sm-6 col-md-4 col-xl mb-2" label="مقطع"></ng-dropdown>
+          <ng-dropdown formControlName="grade"
+                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       [options]="grades"
+                       optionLabel="title"
+                       optionValue="id"
+                       label="مقطع">
+          </ng-dropdown>
           <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl mb-2" [options]="genders"
                        label="جنسیت"></ng-dropdown>
           <div class="d-flex align-items-center col-md-4 col-xl mb-2">

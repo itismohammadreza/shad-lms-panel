@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GradeCount, TutorialCount} from "@core/models";
+import {GradeCount, Item, TutorialCount} from "@core/models";
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UtilsService} from "@ng/services";
@@ -103,6 +103,8 @@ export class TutorialPage implements OnInit {
   count: TutorialCount = {};
   filterEnabled: boolean = false;
   genders = this.dataService.genders;
+  fields: Item[] = [];
+  grades: Item[] = [];
 
   constructor(private dataService: DataService, private utilsService: UtilsService) {
   }
@@ -112,8 +114,10 @@ export class TutorialPage implements OnInit {
   }
 
   async loadData() {
-    this.gradeCount = await this.dataService.getGradeCount('Tutorial')
-    this.count = await this.dataService.getTutorialCount()
+    this.gradeCount = await this.dataService.getGradeCount('Tutorial');
+    this.count = await this.dataService.getTutorialCount();
+    this.fields = await this.dataService.getFields();
+    this.grades = await this.dataService.getGrades();
   }
 
   async clearFilter() {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ExamCount, GradeCount} from "@core/models";
+import {ExamCount, GradeCount, Item} from "@core/models";
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UtilsService} from "@ng/services";
@@ -104,6 +104,8 @@ export class ExamPage implements OnInit {
   count: ExamCount = {};
   filterEnabled: boolean = false;
   genders = this.dataService.genders;
+  fields: Item[] = [];
+  grades: Item[] = [];
 
   constructor(private dataService: DataService, private utilsService: UtilsService) {
   }
@@ -114,7 +116,9 @@ export class ExamPage implements OnInit {
 
   async loadData() {
     this.gradeCount = await this.dataService.getGradeCount('Exam')
-    this.count = await this.dataService.getExamCount()
+    this.count = await this.dataService.getExamCount();
+    this.fields = await this.dataService.getFields();
+    this.grades = await this.dataService.getGrades();
   }
 
   async clearFilter() {
