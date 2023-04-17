@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
-import {CountBar, District, ExamCount, Province, TutorialCount, Usage} from "@core/models";
+import {CountBar, District, ExamCount, Item, Province, TutorialCount, Usage} from "@core/models";
 
 @Component({
   selector: 'ng-dashboard',
@@ -32,6 +32,8 @@ export class DashboardPage implements OnInit {
   usage: Usage = {};
   provinces: Province[] = [];
   districts: District[] = [];
+  fields: Item[] = [];
+  grades: Item[] = [];
   examCount: ExamCount = {};
   homeworkCount: ExamCount = {};
   tutorialCount: TutorialCount = {};
@@ -40,6 +42,7 @@ export class DashboardPage implements OnInit {
   schoolTypes = this.dataService.schoolTypes;
   genders = this.dataService.genders;
   schoolGenders = this.dataService.schoolGenders;
+  districtsLoading: boolean = false;
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
@@ -57,6 +60,8 @@ export class DashboardPage implements OnInit {
     this.examCount = await this.dataService.getExamCount();
     this.homeworkCount = await this.dataService.getHomeworkCount();
     this.tutorialCount = await this.dataService.getTutorialCount();
+    this.fields = await this.dataService.getFields();
+    this.grades = await this.dataService.getGrades();
   }
 
   async onSubmitCountBarFilter() {
@@ -102,7 +107,14 @@ export class DashboardPage implements OnInit {
     return (bothFilled || bothEmpty) ? null : {invalidDate: true};
   }
 
-  async onStateChange(event: any) {
-    this.districts = await this.dataService.getDistricts(event.value);
+  async onProvinceChange(event: any) {
+    try {
+      this.districtsLoading = true;
+      this.countBarForm.get('district_id').setValue(null);
+      this.districts = await this.dataService.getDistricts(event.value);
+      this.districtsLoading = false;
+    } catch {
+      this.districtsLoading = false;
+    }
   }
 }

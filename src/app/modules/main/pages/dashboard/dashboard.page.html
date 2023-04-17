@@ -5,14 +5,32 @@
         <form class="form-row mb-3"
               [formGroup]="countBarForm"
               (ngSubmit)="onSubmitCountBarFilter()">
-          <ng-dropdown formControlName="grade" class="col-sm-6 col-md-4 col-xl mb-2" label="مقطع"></ng-dropdown>
+          <ng-dropdown formControlName="grade"
+                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       label="مقطع"
+                       [options]="grades"
+                       optionLabel="title"
+                       optionValue="id">
+          </ng-dropdown>
           <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl mb-2" label="جنسیت"
                        [options]="genders"></ng-dropdown>
-          <ng-dropdown formControlName="major" class="col-sm-6 col-md-4 col-xl mb-2" label="رشته"></ng-dropdown>
+          <ng-dropdown formControlName="major"
+                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       [options]="fields"
+                       optionLabel="title"
+                       [filter]="true"
+                       optionValue="id"
+                       label="رشته">
+          </ng-dropdown>
           <ng-dropdown formControlName="stage" class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
-          <ng-dropdown formControlName="district_id" class="col-sm-6 col-md-4 col-xl mb-2" label="شهر"></ng-dropdown>
-          <ng-dropdown formControlName="province_id" [options]="provinces" optionLabel="title"
-                       class="col-sm-6 col-md-4 col-xl mb-2" label="استان"></ng-dropdown>
+          <ng-dropdown formControlName="province_id" [options]="provinces" optionLabel="title" optionValue="province_id"
+                       class="col-sm-6 col-md-4 col-xl mb-2" label="استان"
+                       [disabled]="districtsLoading"
+                       [icon]="districtsLoading ? 'pi pi-spin pi-spinner' : null"
+                       (onChange)="onProvinceChange($event)"></ng-dropdown>
+          <ng-dropdown formControlName="district_id" class="col-sm-6 col-md-4 col-xl mb-2" [options]="districts"
+                       optionLabel="title" optionValue="district_id" label="شهر"
+                       [disabled]="districtsLoading || !countBarForm.get('province_id').value"></ng-dropdown>
           <ng-jalali-datepicker formControlName="start_time" [showIcon]="false" [showClear]="true"
                                 class="col-sm-6 col-md-4 col-xl mb-2"
                                 label="از تاریخ"></ng-jalali-datepicker>
@@ -140,8 +158,9 @@
               <form [formGroup]="usageForm" (ngSubmit)="onSubmitUsageFilter()">
                 <ng-dropdown formControlName="school_gender" class="mt-4" label="جنسیت"
                              [options]="schoolGenders"></ng-dropdown>
-                <ng-dropdown formControlName="province_id" [options]="provinces" class="mt-3"
-                             label="استان" (onChange)="onStateChange($event)"></ng-dropdown>
+                <ng-dropdown formControlName="province_id" class="mt-3"
+                             label="استان" [options]="provinces" optionLabel="title"
+                             optionValue="province_id"></ng-dropdown>
                 <ng-dropdown formControlName="district_id" [options]="districts" class="mt-3"
                              label="منطقه"></ng-dropdown>
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>

@@ -29,6 +29,11 @@ export interface District {
   title: string;
 }
 
+export interface Item {
+  id: string;
+  title: string;
+}
+
 export interface CountBar {
   exams?: number;
   homeworks?: number;

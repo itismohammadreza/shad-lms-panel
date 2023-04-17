@@ -6,7 +6,7 @@ import {
   District,
   EntityCountFilter,
   EntityType,
-  ExamCount,
+  ExamCount, Item,
   GradeCount,
   Province,
   TutorialCount,
@@ -106,6 +106,14 @@ export class DataService extends ApiService {
   }
 
   getDistricts(provinceId: number) {
-    return this._get<District[]>('districts', {params: {limit: 100, offset: 0, province_id: provinceId}}).toPromise();
+    return this._get<District[]>('districts', {params: {limit: 50, offset: 0, province_id: provinceId}}).toPromise();
+  }
+
+  getFields() {
+    return this._get<Item[]>('fields').toPromise();
+  }
+
+  getGrades() {
+    return this._get<Item[]>('grades', {params: {limit: 50, offset: 0}}).toPromise();
   }
 }
