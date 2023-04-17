@@ -27,7 +27,7 @@
         <h5>آزمون ها</h5>
         <div class="row mt-4">
           <div class="mt-2 col-md-4">
-            <ng-figure title="درحال برگزاری" layout="horizontal" sub="0"></ng-figure>
+            <ng-figure title="درحال برگزاری" layout="horizontal" [sub]="count.available"></ng-figure>
           </div>
           <div class="mt-2 col-md-4">
             <ng-figure title="تستی" layout="horizontal" sub="0"></ng-figure>
@@ -88,7 +88,7 @@
             </ng-button>
           </div>
         </form>
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
             <ng-figure title="درحال برگزاری" [sub]="count.available"></ng-figure>
           </div>
@@ -107,7 +107,8 @@
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
             <ng-figure title="تستی و تشریحی" [sub]="count.created_per_type"></ng-figure>
           </div>
-          <div class="col-12 mt-5">
+          <div class="w-100"></div>
+          <div class="col-lg-10 mt-5">
             <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
           </div>
         </div>

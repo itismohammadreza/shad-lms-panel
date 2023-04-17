@@ -27,7 +27,7 @@
         <h5>تکالیف</h5>
         <div class="row mt-4">
           <div class="col-12 mt-2">
-            <ng-figure title="ایجاد شده" layout="horizontal" sub="0"></ng-figure>
+            <ng-figure title="ایجاد شده" layout="horizontal" [sub]="count.created"></ng-figure>
           </div>
         </div>
       </p-card>
@@ -81,20 +81,21 @@
             </ng-button>
           </div>
         </form>
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="mt-2 col-sm-6 col-lg-3 col-xl">
-            <ng-figure title="ایجاد شده" sub="0"></ng-figure>
+            <ng-figure title="ایجاد شده" [sub]="count.created"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-3 col-xl">
-            <ng-figure title="انجام شده" sub="0"></ng-figure>
+            <ng-figure title="انجام شده" [sub]="count.done"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-3 col-xl">
-            <ng-figure title="تصحیح شده" sub="0"></ng-figure>
+            <ng-figure title="تصحیح شده" [sub]="count.corrected"></ng-figure>
           </div>
           <div class="mt-2 col-sm-6 col-lg-3 col-xl">
-            <ng-figure title="براساس جنسیت" sub="0"></ng-figure>
+            <ng-figure title="براساس جنسیت" [sub]="count.created_per_gender"></ng-figure>
           </div>
-          <div class="col-12 mt-5">
+          <div class="w-100"></div>
+          <div class="col-lg-10 mt-5">
             <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
           </div>
         </div>

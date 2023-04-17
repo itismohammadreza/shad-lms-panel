@@ -48,7 +48,7 @@
                        optionValue="id"
                        label="رشته">
           </ng-dropdown>
-          <ng-dropdown formControlName="stage" class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
           <ng-dropdown formControlName="grade"
                        class="col-sm-6 col-md-4 col-xl mb-2"
                        [options]="grades"
@@ -81,7 +81,7 @@
             </ng-button>
           </div>
         </form>
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="mt-2 col-sm-6 col-lg-4 col-xl">
             <ng-figure title="مشاهده شده" [sub]="count.seen"></ng-figure>
           </div>
@@ -99,20 +99,21 @@
               <div class="d-flex align-items-center justify-content-around">
                 <div>
                   <div class="text-muted">MP4</div>
-                  <h3>{{''}}</h3>
+                  <h3>{{count.mp4_created}}</h3>
                 </div>
                 <div>
                   <div class="text-muted">PDF</div>
-                  <h3>{{''}}</h3>
+                  <h3>{{count.pdf_created}}</h3>
                 </div>
                 <div>
                   <div class="text-muted">JPG</div>
-                  <h3>{{''}}</h3>
+                  <h3>{{count.jpg_created}}</h3>
                 </div>
               </div>
             </ng-figure>
           </div>
-          <div class="col-12 mt-5">
+          <div class="w-100"></div>
+          <div class="col-lg-10 mt-5">
             <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
           </div>
         </div>
