@@ -17,8 +17,7 @@ export class ExamPage implements OnInit {
     end_time: new FormControl(),
     type: new FormControl(),
     lesson_id: new FormControl(),
-    major: new FormControl(),
-    stage: new FormControl(),
+    field: new FormControl(),
     grade: new FormControl(),
     gender_id: new FormControl(),
   }, this.bothDatesValidator);

@@ -11,10 +11,9 @@ import {CountBar, District, ExamCount, Item, Province, TutorialCount, Usage} fro
 })
 export class DashboardPage implements OnInit {
   countBarForm = new FormGroup({
+    field: new FormControl(),
     grade: new FormControl(),
     gender_id: new FormControl(),
-    major: new FormControl(),
-    stage: new FormControl(),
     province_id: new FormControl(),
     district_id: new FormControl(),
     start_time: new FormControl(),

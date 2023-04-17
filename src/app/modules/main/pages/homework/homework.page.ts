@@ -16,8 +16,7 @@ export class HomeworkPage implements OnInit {
     start_time: new FormControl(),
     end_time: new FormControl(),
     lesson_id: new FormControl(),
-    major: new FormControl(),
-    stage: new FormControl(),
+    field: new FormControl(),
     grade: new FormControl(),
     gender_id: new FormControl(),
   }, this.bothDatesValidator);

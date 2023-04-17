@@ -14,14 +14,14 @@
           </ng-dropdown>
           <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl mb-2" label="جنسیت"
                        [options]="genders"></ng-dropdown>
-          <ng-dropdown formControlName="major"
+          <ng-dropdown formControlName="field"
                        class="col-sm-6 col-md-4 col-xl mb-2"
                        [options]="fields"
                        optionLabel="title"
                        optionValue="id"
                        label="رشته">
           </ng-dropdown>
-          <ng-dropdown formControlName="stage" class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
           <ng-dropdown formControlName="province_id" [options]="provinces" optionLabel="title" optionValue="province_id"
                        class="col-sm-6 col-md-4 col-xl mb-2" label="استان"
                        [disabled]="districtsLoading"

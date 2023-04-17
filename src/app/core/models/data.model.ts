@@ -94,10 +94,9 @@ export interface TutorialCount {
 }
 
 export interface CountBarFilter {
-  grade?: 'Elementary';
+  grade?: string;
+  field?: string;
   gender_id?: Gender;
-  major?: string;
-  stage?: string;
   province_id?: number;
   district_id?: number;
   start_time?: string;
@@ -105,11 +104,11 @@ export interface CountBarFilter {
 }
 
 export interface UsageFilter {
+  grade?: string;
   gender_id?: Gender;
   province_id?: number;
   district_id?: number;
   school_type?: 'Governmental' | '';
-  grade?: 'Elementary';
   school_id?: number;
   school_gender?: SchoolGender;
 }
@@ -120,4 +119,6 @@ export interface EntityCountFilter {
   school_gender?: SchoolGender;
   lesson_id?: number;
   type?: 'MultiChoice' | 'Descriptive';
+  grade?: string;
+  field?: string;
 }
