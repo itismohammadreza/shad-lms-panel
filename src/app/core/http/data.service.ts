@@ -29,13 +29,10 @@ export class DataService extends ApiService {
     return {
       plugins: {
         legend: {
-          display: false,
+          labels: {
+            font: {family: 'IRANSans'},
+          }
         },
-        // legend: {
-        //   labels: {
-        //     color: '#495057'
-        //   }
-        // }
       },
       scales: {
         x: {
