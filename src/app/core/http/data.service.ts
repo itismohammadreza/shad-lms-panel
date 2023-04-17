@@ -102,10 +102,10 @@ export class DataService extends ApiService {
   }
 
   getProvinces() {
-    return this._get<Province[]>('provinces', {params: {limit: 100, offset: 0}}).toPromise();
+    return this._get<Province[]>('provinces', {params: {limit: 50, offset: 0}}).toPromise();
   }
 
   getDistricts(provinceId: number) {
-    return this._get<District[]>('provinces', {params: {limit: 100, offset: 0, province_id: provinceId}}).toPromise();
+    return this._get<District[]>('districts', {params: {limit: 100, offset: 0, province_id: provinceId}}).toPromise();
   }
 }

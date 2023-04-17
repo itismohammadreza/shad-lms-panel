@@ -1,6 +1,7 @@
 export type EntityType = 'Exam' | 'Homework' | 'Tutorial';
 export type Gender = 1 | 2; // 1:Male, 2:Female
 export type SchoolGender = 1 | 2 | 3; // 1:Male, 2:Female, 3:Mixed
+
 export interface LoginCredentials {
   username: string;
   password: string;
@@ -15,6 +16,17 @@ export interface User {
   permission: string;
   status: boolean;
   last_visit?: string;
+}
+
+export interface Province {
+  province_id: number;
+  title: string;
+}
+
+export interface District {
+  province_id: number;
+  district_id: number;
+  title: string;
 }
 
 export interface CountBar {
@@ -46,6 +58,7 @@ export interface GradeCount {
 }
 
 export interface ExamCount {
+  created?: number;
   available?: number;
   done?: number;
   corrected?: number;
@@ -91,15 +104,4 @@ export interface EntityCountFilter {
   school_gender?: SchoolGender;
   lesson_id?: number;
   type?: 'MultiChoice' | 'Descriptive';
-}
-
-export interface Province {
-  province_id: number;
-  title: string;
-}
-
-export interface District {
-  province_id: number;
-  district_id: number;
-  title: string;
 }

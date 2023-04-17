@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
-import {CountBar, District, Province, Usage} from "@core/models";
+import {CountBar, District, ExamCount, Province, TutorialCount, Usage} from "@core/models";
 
 @Component({
   selector: 'ng-dashboard',
@@ -27,11 +27,14 @@ export class DashboardPage implements OnInit {
     school_type: new FormControl(),
     grade: new FormControl(),
     school_id: new FormControl(),
-  })
+  });
   countBar: CountBar = {};
   usage: Usage = {};
   provinces: Province[] = [];
   districts: District[] = [];
+  examCount: ExamCount = {};
+  homeworkCount: ExamCount = {};
+  tutorialCount: TutorialCount = {};
   countBarFilterEnabled: boolean = false;
   usageFilterEnabled: boolean = false;
   schoolTypes = this.dataService.schoolTypes;
@@ -51,6 +54,9 @@ export class DashboardPage implements OnInit {
     this.countBar = await this.dataService.getCountBar();
     this.usage = await this.dataService.getUsage();
     this.provinces = await this.dataService.getProvinces();
+    this.examCount = await this.dataService.getExamCount();
+    this.homeworkCount = await this.dataService.getHomeworkCount();
+    this.tutorialCount = await this.dataService.getTutorialCount();
   }
 
   async onSubmitCountBarFilter() {
