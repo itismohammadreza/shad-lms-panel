@@ -166,7 +166,9 @@
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
                 <ng-dropdown formControlName="school_type" class="mt-3" label="نوع مدرسه"
                              [options]="schoolTypes"></ng-dropdown>
-                <ng-dropdown formControlName="grade" class="mt-3" label="مقطع"></ng-dropdown>
+                <ng-dropdown formControlName="grade" class="mt-3" label="مقطع" [options]="grades"
+                             optionLabel="title"
+                             optionValue="id"></ng-dropdown>
                 <div class="d-flex mt-5">
                   <ng-button [full]="true" size="md" appearance="outlined" color="success"
                              type="submit"
