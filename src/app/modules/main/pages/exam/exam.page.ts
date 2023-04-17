@@ -10,86 +10,8 @@ import {UtilsService} from "@ng/services";
   styleUrls: ['./exam.page.scss']
 })
 export class ExamPage implements OnInit {
-  stackedData = {
-    labels: ['تهران', 'اصفهان', 'شیراز', 'اردبیل', 'قم', 'تبریز', 'مشهد'],
-    datasets: [{
-      type: 'bar',
-      backgroundColor: '#42A5F5',
-      data: [
-        50,
-        25,
-        12,
-        48,
-        90,
-        76,
-        42
-      ]
-    }, {
-      type: 'bar',
-      backgroundColor: '#66BB6A',
-      data: [
-        21,
-        84,
-        24,
-        75,
-        37,
-        65,
-        34
-      ]
-    }, {
-      type: 'bar',
-      backgroundColor: '#FFA726',
-      data: [
-        41,
-        52,
-        24,
-        74,
-        23,
-        21,
-        32
-      ]
-    }]
-  };
-  stackedOptions = {
-    plugins: {
-      legend: {display: false},
-      tooltips: {
-        mode: 'index',
-        intersect: false
-      },
-      // legend: {
-      //   labels: {
-      //     color: '#495057'
-      //   }
-      // }
-    },
-    scales: {
-      x: {
-        stacked: false,
-        ticks: {
-          font: {family: 'IRANSans'},
-        },
-        // ticks: {
-        //   color: '#495057'
-        // },
-        // grid: {
-        //   color: '#ebedef'
-        // }
-      },
-      y: {
-        stacked: false,
-        ticks: {
-          font: {family: 'IRANSans'},
-        }
-        // ticks: {
-        //   color: '#495057'
-        // },
-        // grid: {
-        //   color: '#ebedef'
-        // }
-      }
-    }
-  };
+  chartData;
+  chartOptions = this.dataService.chartOptions;
   form = new FormGroup({
     start_time: new FormControl(),
     end_time: new FormControl(),
@@ -115,10 +37,33 @@ export class ExamPage implements OnInit {
   }
 
   async loadData() {
-    this.gradeCount = await this.dataService.getGradeCount('Exam')
+    this.gradeCount = await this.dataService.getGradeCount('Exam');
     this.count = await this.dataService.getExamCount();
     this.fields = await this.dataService.getFields();
     this.grades = await this.dataService.getGrades();
+    const provinces = await this.dataService.getProvinces();
+    this.chartData = {
+      labels: provinces.map(p => p.title),
+      datasets: [
+        {
+          label: 'درحال برگزاری',
+          type: 'bar',
+          backgroundColor: '#42A5F5',
+          data: await this.dataService.getChartDataSet(this.count.chart_data.available)
+        },
+        {
+          label: 'ایجاد شده',
+          type: 'bar',
+          backgroundColor: '#66BB6A',
+          data: await this.dataService.getChartDataSet(this.count.chart_data.corrected)
+        },
+        {
+          label: 'انجام شده',
+          type: 'bar',
+          backgroundColor: '#FFA726',
+          data: await this.dataService.getChartDataSet(this.count.chart_data.done)
+        }]
+    };
   }
 
   async clearFilter() {

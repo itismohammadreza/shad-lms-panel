@@ -2,6 +2,15 @@ export type EntityType = 'Exam' | 'Homework' | 'Tutorial';
 export type Gender = 1 | 2; // 1:Male, 2:Female
 export type SchoolGender = 1 | 2 | 3; // 1:Male, 2:Female, 3:Mixed
 
+interface ChartData {
+  corrected?: { _id: string, count: number }[];
+  created?: { _id: string, count: number }[];
+  done?: { _id: string, count: number }[];
+  available?: { _id: string, count: number }[];
+  downloaded?: { _id: string, count: number }[];
+  seen?: { _id: string, count: number }[];
+}
+
 export interface LoginCredentials {
   username: string;
   password: string;
@@ -70,6 +79,7 @@ export interface ExamCount {
   created_per_gender?: number;
   created_per_type?: number;
   student_participation?: number;
+  chart_data?: ChartData;
 }
 
 export interface TutorialCount {
@@ -80,6 +90,7 @@ export interface TutorialCount {
   jpg_created?: number;
   pdf_created?: number;
   mp4_created?: number;
+  chart_data?: ChartData;
 }
 
 export interface CountBarFilter {

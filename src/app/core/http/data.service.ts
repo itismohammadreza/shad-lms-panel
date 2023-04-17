@@ -6,8 +6,9 @@ import {
   District,
   EntityCountFilter,
   EntityType,
-  ExamCount, Item,
+  ExamCount,
   GradeCount,
+  Item,
   Province,
   TutorialCount,
   Usage,
@@ -22,6 +23,47 @@ import {map} from "rxjs";
 export class DataService extends ApiService {
   constructor() {
     super()
+  }
+
+  get chartOptions() {
+    return {
+      plugins: {
+        legend: {
+          display: false,
+        },
+        // legend: {
+        //   labels: {
+        //     color: '#495057'
+        //   }
+        // }
+      },
+      scales: {
+        x: {
+          stacked: false,
+          ticks: {
+            font: {family: 'IRANSans'},
+          },
+          // ticks: {
+          //   color: '#495057'
+          // },
+          // grid: {
+          //   color: '#ebedef'
+          // }
+        },
+        y: {
+          stacked: false,
+          ticks: {
+            font: {family: 'IRANSans'},
+          }
+          // ticks: {
+          //   color: '#495057'
+          // },
+          // grid: {
+          //   color: '#ebedef'
+          // }
+        }
+      }
+    };
   }
 
   get schoolTypes() {
@@ -115,5 +157,15 @@ export class DataService extends ApiService {
 
   getGrades() {
     return this._get<Item[]>('grades', {params: {limit: 50, offset: 0}}).toPromise();
+  }
+
+  async getChartDataSet(list: any) {
+    const provinces = await this.getProvinces();
+    const result = Array(provinces.length).fill(null);
+    list.forEach((av, index) => {
+      const prIndex = provinces.findIndex(p => p.province_id == +av._id);
+      result[prIndex] = av.count;
+    })
+    return result;
   }
 }
