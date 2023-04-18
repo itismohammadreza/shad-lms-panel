@@ -24,7 +24,7 @@ const routes: Routes = [
       {
         path: 'exam',
         component: ExamPage,
-        title: 'داشبورد'
+        title: 'آزمون'
       },
       {
         path: 'homework',
