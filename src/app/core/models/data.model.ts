@@ -27,6 +27,11 @@ export interface User {
   last_visit?: string;
 }
 
+export interface UserFilter {
+  sort?: string;
+  search_text?: string;
+}
+
 export interface Province {
   province_id: number;
   title: string;

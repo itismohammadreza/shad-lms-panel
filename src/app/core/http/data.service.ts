@@ -13,7 +13,8 @@ import {
   TutorialCount,
   Usage,
   UsageFilter,
-  User
+  User,
+  UserFilter
 } from "@core/models";
 import {map} from "rxjs";
 
@@ -102,8 +103,8 @@ export class DataService extends ApiService {
     return [{label: 'پسرانه', value: 1}, {label: 'دخترانه', value: 2}, {label: 'مختلط', value: 3}];
   }
 
-  getUsers(sort: string[] = null) {
-    return this._post<User[]>('users', {sort}).toPromise();
+  getUsers(filter?: UserFilter) {
+    return this._get<User[]>('users', {params: {...filter}}).toPromise();
   }
 
   addUser(data: User) {

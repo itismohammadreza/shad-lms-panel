@@ -13,7 +13,9 @@ import {Subject, takeUntil} from "rxjs";
 export class UsersPage implements OnInit, OnDestroy {
   currentUser: User;
   users: User[] = [];
-  destroy$ = new Subject()
+  destroy$ = new Subject();
+  currentSort: string;
+  currentFilter: string;
 
   constructor(private overlayService: OverlayService,
               private dataService: DataService,
@@ -105,8 +107,8 @@ export class UsersPage implements OnInit, OnDestroy {
   }
 
   async onSort(event) {
-    const sort = `${event.order == 1 ? '' : '-'}${event.field}`;
-    const users = await this.dataService.getUsers([sort]);
+    this.currentSort = `${event.order == 1 ? '' : '-'}${event.field}`;
+    const users = await this.dataService.getUsers({sort: this.currentSort, search_text: this.currentFilter});
     event.data.length = 0;
     event.data.push(...users);
   }
@@ -139,5 +141,11 @@ export class UsersPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete()
+  }
+
+  async onSearchUsers(event: any) {
+    this.currentFilter = event.target.value;
+    const users = await this.dataService.getUsers({sort: this.currentSort, search_text: this.currentFilter});
+    this.users = [...users]
   }
 }
