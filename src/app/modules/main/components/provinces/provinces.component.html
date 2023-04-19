@@ -1,0 +1,22 @@
+<form [formGroup]="form" [class.form-row]="layout == 'responsive'">
+  <ng-dropdown
+    formControlName="province_id"
+    [options]="provinces"
+    optionLabel="title"
+    optionValue="province_id"
+    [ngClass]="{'col-sm-6 col-md-6 col-xl mb-2' : layout == 'responsive','mt-3':layout == 'fluid'}"
+    label="استان"
+    [disabled]="districtsLoading"
+    [icon]="districtsLoading ? 'pi pi-spin pi-spinner' : null"
+    (onChange)="onProvinceChange($event)">
+  </ng-dropdown>
+  <ng-dropdown
+    formControlName="district_id"
+    [ngClass]="{'col-sm-6 col-md-6 col-xl mb-2': layout == 'responsive','mt-3':layout == 'fluid'}"
+    [options]="districts"
+    optionLabel="title"
+    optionValue="district_id"
+    label="منطقه"
+    [disabled]="districtsLoading || !form.get('province_id').value">
+  </ng-dropdown>
+</form>

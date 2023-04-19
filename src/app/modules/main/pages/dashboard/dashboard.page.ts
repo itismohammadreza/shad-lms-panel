@@ -29,8 +29,6 @@ export class DashboardPage implements OnInit {
   });
   countBar: CountBar = {};
   usage: Usage = {};
-  provinces: Province[] = [];
-  districts: District[] = [];
   fields: Item[] = [];
   grades: Item[] = [];
   examCount: ExamCount = {};
@@ -41,7 +39,6 @@ export class DashboardPage implements OnInit {
   schoolTypes = this.dataService.schoolTypes;
   genders = this.dataService.genders;
   schoolGenders = this.dataService.schoolGenders;
-  districtsLoading: boolean = false;
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
@@ -55,7 +52,6 @@ export class DashboardPage implements OnInit {
   async loadData() {
     this.countBar = await this.dataService.getCountBar();
     this.usage = await this.dataService.getUsage();
-    this.provinces = await this.dataService.getProvinces();
     this.examCount = await this.dataService.getExamCount();
     this.homeworkCount = await this.dataService.getHomeworkCount();
     this.tutorialCount = await this.dataService.getTutorialCount();
@@ -104,16 +100,5 @@ export class DashboardPage implements OnInit {
     const bothFilled = !!start_time && !!end_time;
     const bothEmpty = !start_time && !end_time;
     return (bothFilled || bothEmpty) ? null : {invalidDate: true};
-  }
-
-  async onProvinceChange(event: any) {
-    try {
-      this.districtsLoading = true;
-      this.countBarForm.get('district_id').setValue(null);
-      this.districts = await this.dataService.getDistricts(event.value);
-      this.districtsLoading = false;
-    } catch {
-      this.districtsLoading = false;
-    }
   }
 }

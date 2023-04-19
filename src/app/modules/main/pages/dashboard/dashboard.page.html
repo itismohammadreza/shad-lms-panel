@@ -22,14 +22,9 @@
                        label="رشته">
           </ng-dropdown>
           <ng-dropdown class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
-          <ng-dropdown formControlName="province_id" [options]="provinces" optionLabel="title" optionValue="province_id"
-                       class="col-sm-6 col-md-4 col-xl mb-2" label="استان"
-                       [disabled]="districtsLoading"
-                       [icon]="districtsLoading ? 'pi pi-spin pi-spinner' : null"
-                       (onChange)="onProvinceChange($event)"></ng-dropdown>
-          <ng-dropdown formControlName="district_id" class="col-sm-6 col-md-4 col-xl mb-2" [options]="districts"
-                       optionLabel="title" optionValue="district_id" label="شهر"
-                       [disabled]="districtsLoading || !countBarForm.get('province_id').value"></ng-dropdown>
+
+          <div class="col-md-8 col-xl-3" ng-provinces [form]="countBarForm"></div>
+
           <ng-jalali-datepicker formControlName="start_time" [showIcon]="false" [showClear]="true"
                                 class="col-sm-6 col-md-4 col-xl mb-2"
                                 label="از تاریخ"></ng-jalali-datepicker>
@@ -155,13 +150,13 @@
             <div class="border bg-white rounded p-4 shadow">
               <h6>فیلتر</h6>
               <form [formGroup]="usageForm" (ngSubmit)="onSubmitUsageFilter()">
-                <ng-dropdown formControlName="school_gender" class="mt-4" label="جنسیت"
-                             [options]="schoolGenders"></ng-dropdown>
-                <ng-dropdown formControlName="province_id" class="mt-3"
-                             label="استان" [options]="provinces" optionLabel="title"
-                             optionValue="province_id"></ng-dropdown>
-                <ng-dropdown class="mt-3"
-                             label="منطقه"></ng-dropdown>
+                <ng-dropdown
+                  formControlName="school_gender"
+                  class="mt-4"
+                  label="جنسیت"
+                  [options]="schoolGenders">
+                </ng-dropdown>
+                <div class="mt-3" ng-provinces layout="fluid" [form]="usageForm"></div>
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
                 <ng-dropdown formControlName="school_type" class="mt-3" label="نوع مدرسه"
                              [options]="schoolTypes"></ng-dropdown>
