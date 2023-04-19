@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
 import {Validators} from "@angular/forms";
 import {User} from "@core/models";
-import {AuthService, DataService} from "@core/http";
+import {DataService} from "@core/http";
 import {Subject, takeUntil} from "rxjs";
 
 @Component({
@@ -11,15 +11,13 @@ import {Subject, takeUntil} from "rxjs";
   styleUrls: ['./users.page.scss']
 })
 export class UsersPage implements OnInit, OnDestroy {
-  currentUser: User;
   users: User[] = [];
   destroy$ = new Subject();
   currentSort: string;
   currentFilter: string;
 
   constructor(private overlayService: OverlayService,
-              private dataService: DataService,
-              private authService: AuthService) {
+              private dataService: DataService) {
   }
 
   ngOnInit(): void {
@@ -27,36 +25,28 @@ export class UsersPage implements OnInit, OnDestroy {
   }
 
   async loadData() {
-    this.currentUser = this.authService.user;
     this.users = await this.dataService.getUsers();
   }
 
-  openUserDialog(value?: User) {
-    return this.overlayService.showDialogForm([
-        {
-          component: 'hidden',
-          key: 'id',
-          value: value?.id,
-        },
+  onAddUser() {
+    this.overlayService.showDialogForm([
         {
           component: 'input-text',
           key: 'username',
           label: 'نام کاربری',
-          value: value?.username,
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
           component: 'input-text',
           key: 'password',
           label: 'رمز عبور',
-          value: value?.password,
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
         {
           component: 'dropdown',
           key: 'permission',
           options: [{label: 'ادمین', value: 'Admin'}, {label: 'کاربر', value: 'User'}],
-          value: value?.permission || 'User',
+          value: 'User',
           label: 'سطح دسترسی',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
         },
@@ -64,7 +54,6 @@ export class UsersPage implements OnInit, OnDestroy {
           component: 'input-text',
           key: 'phone_number',
           label: 'شماره همراه',
-          value: value?.phone_number,
           maxlength: 11,
           keyFilter: 'num',
           validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
@@ -73,7 +62,6 @@ export class UsersPage implements OnInit, OnDestroy {
           component: 'input-text',
           key: 'email',
           label: 'ایمیل',
-          value: value?.email,
           validations: [
             {type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'},
             {type: 'email', validator: Validators.email, message: 'ایمیل نامعتبر است'}
@@ -81,18 +69,14 @@ export class UsersPage implements OnInit, OnDestroy {
         },
       ],
       {
-        header: value ? 'ویرایش کاربر' : 'افزودن کاربر',
+        header: 'افزودن کاربر',
         showHeader: true,
         buttonFull: true,
         buttonSize: 'lg',
         acceptColor: 'success',
-        acceptLabel: value ? 'ویرایش' : 'افزودن',
+        acceptLabel: 'افزودن',
         acceptIcon: 'pi pi-plus'
-      })
-  }
-
-  onAddUser() {
-    this.openUserDialog().pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
+      }).pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
       if (!res) {
         return
       }
@@ -116,7 +100,7 @@ export class UsersPage implements OnInit, OnDestroy {
   async changeUserStatus(user: User, event: any) {
     const {value, loadingCallback} = event;
     try {
-      await this.dataService.editProfile({...user, status: value} as User);
+      await this.dataService.editProfile({id: user.id, status: value} as User);
       loadingCallback()
     } catch (e) {
       loadingCallback(false)
@@ -124,7 +108,68 @@ export class UsersPage implements OnInit, OnDestroy {
   }
 
   editUser(user: User, index: number) {
-    this.openUserDialog(user).pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
+    this.overlayService.showDialogForm([
+        {
+          component: 'hidden',
+          key: 'id',
+          value: user.id,
+        },
+        {
+          component: 'hidden',
+          key: 'last_visit',
+          value: user.last_visit,
+        },
+        {
+          component: 'input-text',
+          key: 'username',
+          label: 'نام کاربری',
+          value: user.username,
+          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
+        },
+        {
+          component: 'input-text',
+          key: 'password',
+          label: 'رمز عبور',
+          value: user.password,
+          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
+        },
+        {
+          component: 'dropdown',
+          key: 'permission',
+          options: [{label: 'ادمین', value: 'Admin'}, {label: 'کاربر', value: 'User'}],
+          value: user.permission,
+          label: 'سطح دسترسی',
+          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
+        },
+        {
+          component: 'input-text',
+          key: 'phone_number',
+          label: 'شماره همراه',
+          value: user.phone_number,
+          maxlength: 11,
+          keyFilter: 'num',
+          validations: [{type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'}],
+        },
+        {
+          component: 'input-text',
+          key: 'email',
+          label: 'ایمیل',
+          value: user.email,
+          validations: [
+            {type: 'required', validator: Validators.required, message: 'این فیلد الزامیست'},
+            {type: 'email', validator: Validators.email, message: 'ایمیل نامعتبر است'}
+          ],
+        },
+      ],
+      {
+        header: 'ویرایش کاربر',
+        showHeader: true,
+        buttonFull: true,
+        buttonSize: 'lg',
+        acceptColor: 'success',
+        acceptLabel: 'ویرایش',
+        acceptIcon: 'pi pi-plus'
+      }).pipe(takeUntil(this.destroy$)).subscribe(async (res) => {
       if (!res) {
         return
       }

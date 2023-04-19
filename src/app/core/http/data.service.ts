@@ -108,11 +108,11 @@ export class DataService extends ApiService {
   }
 
   addUser(data: User) {
-    return this._post<{ user: User }>('add-user', data).toPromise();
+    return this._post<{ user: User }>('users', data).toPromise();
   }
 
   editProfile(data: User) {
-    return this._post<User>('edit-profile', data).toPromise();
+    return this._put<User>('profile', data).toPromise();
   }
 
   getGradeCount(type: EntityType) {

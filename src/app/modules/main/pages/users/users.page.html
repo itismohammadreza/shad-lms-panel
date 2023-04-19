@@ -45,7 +45,6 @@
               <td>
                 <ng-switch
                   [value]="user.status"
-                  [disabled]="user.id == currentUser.id"
                   (onChangeAsync)="changeUserStatus(user,$event)"
                   [async]="true">
                 </ng-switch>
