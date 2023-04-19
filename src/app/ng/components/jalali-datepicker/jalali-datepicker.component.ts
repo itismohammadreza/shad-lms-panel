@@ -103,7 +103,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() panelStyleClass: string;
   @Input() panelStyle: object;
   @Input() keepInvalid: boolean;
-  @Input() hideOnDateTimeSelect: boolean = false;
+  @Input() hideOnDateTimeSelect: boolean = true;
   @Input() numberOfMonths: number = 1;
   @Input() view: NgDatepickerViewMode = 'date';
   @Input() multipleSeparator: string = ',';
