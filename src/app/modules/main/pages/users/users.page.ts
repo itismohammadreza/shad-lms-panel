@@ -90,29 +90,17 @@ export class UsersPage implements OnInit, OnDestroy {
     })
   }
 
-  async onSort(event) {
-    this.currentSort = `${event.order == 1 ? '' : '-'}${event.field}`;
-    const users = await this.dataService.getUsers({sort: this.currentSort, search_text: this.currentFilter});
-    event.data.length = 0;
-    event.data.push(...users);
-  }
-
-  async changeUserStatus(user: User, event: any) {
-    const {value, loadingCallback} = event;
-    try {
-      await this.dataService.editProfile({id: user.id, status: value} as User);
-      loadingCallback()
-    } catch (e) {
-      loadingCallback(false)
-    }
-  }
-
-  editUser(user: User, index: number) {
+  onEditUser(user: User, index: number) {
     this.overlayService.showDialogForm([
         {
           component: 'hidden',
           key: 'id',
           value: user.id,
+        },
+        {
+          component: 'hidden',
+          key: 'status',
+          value: user.status,
         },
         {
           component: 'hidden',
@@ -182,6 +170,24 @@ export class UsersPage implements OnInit, OnDestroy {
       }
     })
   }
+
+  async onSort(event) {
+    this.currentSort = `${event.order == 1 ? '' : '-'}${event.field}`;
+    const users = await this.dataService.getUsers({sort: this.currentSort, search_text: this.currentFilter});
+    event.data.length = 0;
+    event.data.push(...users);
+  }
+
+  async changeUserStatus(user: User, event: any) {
+    const {value, loadingCallback} = event;
+    try {
+      await this.dataService.editProfile({id: user.id, status: value} as User);
+      loadingCallback()
+    } catch (e) {
+      loadingCallback(false)
+    }
+  }
+
 
   ngOnDestroy() {
     this.destroy$.next(true);
