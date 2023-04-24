@@ -157,7 +157,13 @@
                   label="جنسیت"
                   [options]="schoolGenders">
                 </ng-dropdown>
-                <div class="mt-3" ng-provinces layout="fluid" [form]="usageForm"></div>
+                <div
+                  class="mt-3"
+                  ng-provinces
+                  layout="fluid"
+                  [form]="usageForm"
+                  (onProvinceChange)="onUsageProvinceChange($event)">
+                </div>
                 <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
                 <ng-dropdown
                   formControlName="school_type"
@@ -202,7 +208,8 @@
           </div>
           <div class="order-3 order-md-4 order-lg-2 col-md-12 col-lg-6">
             <ng-pinch-zoom overflow="visible">
-              <ng-iran-map [multiple]="false"></ng-iran-map>
+              <ng-iran-map [ngModel]="mapValue" [async]="true" (onChangeAsync)="onMapClick($event)"
+                           [multiple]="false"></ng-iran-map>
             </ng-pinch-zoom>
           </div>
           <div class="order-2 mb-4 order-lg-3 col-md-6 col-lg-3">

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
 import {CountBar, District, ExamCount, Item, Province, TutorialCount, Usage} from "@core/models";
+import {ProvincesComponent} from "@modules/main/components/provinces/provinces.component";
 
 @Component({
   selector: 'ng-dashboard',
@@ -10,6 +11,7 @@ import {CountBar, District, ExamCount, Item, Province, TutorialCount, Usage} fro
   styleUrls: ['./dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
+  @ViewChildren(ProvincesComponent) provincesCmps: QueryList<ProvincesComponent>;
   countBarForm = new FormGroup({
     field: new FormControl(),
     grade: new FormControl(),
@@ -39,6 +41,7 @@ export class DashboardPage implements OnInit {
   schoolTypes = this.dataService.schoolTypes;
   genders = this.dataService.genders;
   schoolGenders = this.dataService.schoolGenders;
+  mapValue: string;
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
@@ -100,5 +103,22 @@ export class DashboardPage implements OnInit {
     const bothFilled = !!start_time && !!end_time;
     const bothEmpty = !start_time && !end_time;
     return (bothFilled || bothEmpty) ? null : {invalidDate: true};
+  }
+
+  async onMapClick(event: any) {
+    const {value, loadingCallback} = event;
+    this.usageForm.get('province_id').setValue(value.toString());
+    this.usageForm.get('province_id').markAsDirty();
+    try {
+      await this.provincesCmps.toArray()[1]._onProvinceChange({value: value.toString()});
+      await this.onSubmitUsageFilter();
+      loadingCallback()
+    } catch {
+      loadingCallback()
+    }
+  }
+
+  onUsageProvinceChange(event: any) {
+    this.mapValue = event;
   }
 }

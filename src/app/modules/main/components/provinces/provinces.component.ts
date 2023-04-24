@@ -12,11 +12,12 @@ export class ProvincesComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() layout: 'responsive' | 'fluid' = 'responsive';
   @Output() onProvinceChange = new EventEmitter();
+  @Output() onDistrictChange = new EventEmitter();
   districtsLoading: boolean = false;
   provinces: Province[] = [];
   districts: District[] = [];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -29,7 +30,8 @@ export class ProvincesComponent implements OnInit {
 
   async _onProvinceChange(event: any) {
     if (!event.value) {
-      this.form?.get('district_id').setValue(null);
+      this.form.get('district_id').setValue(null);
+      this.districts = [];
       return
     }
     try {
@@ -38,8 +40,13 @@ export class ProvincesComponent implements OnInit {
       this.districts = await this.dataService.getDistricts(event.value);
       this.districtsLoading = false;
       this.onProvinceChange.emit(event.value)
+      this.cd.detectChanges();
     } catch {
       this.districtsLoading = false;
     }
+  }
+
+  async _onDistrictChange(event: any) {
+    this.onDistrictChange.emit(event.value)
   }
 }
