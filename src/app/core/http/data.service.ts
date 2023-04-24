@@ -10,6 +10,8 @@ import {
   GradeCount,
   Item,
   Province,
+  School,
+  SchoolFilter,
   TutorialCount,
   Usage,
   UsageFilter,
@@ -165,6 +167,10 @@ export class DataService extends ApiService {
 
   getDistricts(provinceId: number) {
     return this._get<District[]>('districts', {params: {limit: 50, offset: 0, province_id: provinceId}}).toPromise();
+  }
+
+  getSchools(filter?: SchoolFilter) {
+    return this._get<School[]>('schools', {params: {...filter}}).toPromise();
   }
 
   getFields() {

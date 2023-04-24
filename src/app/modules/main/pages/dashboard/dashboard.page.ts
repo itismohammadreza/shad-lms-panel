@@ -1,16 +1,17 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
-import {CountBar, District, ExamCount, Item, Province, TutorialCount, Usage} from "@core/models";
+import {CountBar, District, ExamCount, Item, Province, School, SchoolFilter, TutorialCount, Usage} from "@core/models";
 import {ProvincesComponent} from "@modules/main/components/provinces/provinces.component";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'ng-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss']
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, OnDestroy {
   @ViewChildren(ProvincesComponent) provincesCmps: QueryList<ProvincesComponent>;
   countBarForm = new FormGroup({
     field: new FormControl(),
@@ -33,6 +34,7 @@ export class DashboardPage implements OnInit {
   usage: Usage = {};
   fields: Item[] = [];
   grades: Item[] = [];
+  schools: School[] = [];
   examCount: ExamCount = {};
   homeworkCount: ExamCount = {};
   tutorialCount: TutorialCount = {};
@@ -42,6 +44,7 @@ export class DashboardPage implements OnInit {
   genders = this.dataService.genders;
   schoolGenders = this.dataService.schoolGenders;
   mapValue: string;
+  destroy$ = new Subject()
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
@@ -50,6 +53,26 @@ export class DashboardPage implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    this.usageForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(res => {
+      const {grade, school_id, ...others} = res;
+      this.mapValue = others.province_id;
+      this.loadSchools({
+        ...others,
+        gender_id: others.school_gender,
+        type_id: others.school_type
+      })
+    })
+  }
+
+  async loadSchools(filter: SchoolFilter) {
+    const {gender_id, province_id, district_id, type_id} = filter;
+    filter = {gender_id, province_id, district_id, type_id};
+    Object.entries(filter).forEach(([key, value]) => {
+      if (value == null) {
+        delete filter[key]
+      }
+    })
+    this.schools = await this.dataService.getSchools(filter);
   }
 
   async loadData() {
@@ -119,7 +142,8 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  onUsageProvinceChange(event: any) {
-    this.mapValue = event;
+  ngOnDestroy() {
+    this.destroy$.next(true)
+    this.destroy$.complete()
   }
 }

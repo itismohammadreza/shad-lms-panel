@@ -94,6 +94,25 @@ export interface TutorialCount {
   chart_data?: ChartData;
 }
 
+export interface School {
+  school_id: string;
+  school_name: string;
+}
+
+export interface SchoolFilter {
+  gender_id?: number;
+  province_id?: number;
+  district_id?: number;
+  type_id?: number;
+  limit?: number;
+  offset?: number;
+}
+
+export interface UserFilter {
+  sort?: string;
+  search_text?: string;
+}
+
 export interface CountBarFilter {
   grade?: string;
   field?: string;

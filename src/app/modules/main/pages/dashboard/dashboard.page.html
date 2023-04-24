@@ -163,7 +163,12 @@
                   layout="fluid"
                   [form]="usageForm">
                 </div>
-                <ng-dropdown formControlName="school_id" class="mt-3" label="مدرسه"></ng-dropdown>
+                <ng-dropdown
+                  formControlName="school_id"
+                  class="mt-3"
+                  label="مدرسه"
+                  [options]="schools">
+                </ng-dropdown>
                 <ng-dropdown
                   formControlName="school_type"
                   class="mt-3"
