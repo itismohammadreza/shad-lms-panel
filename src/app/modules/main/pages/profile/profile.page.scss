@@ -1,5 +1,10 @@
-::ng-deep {
-  img {
-    max-width: 100px;
+:host ::ng-deep {
+  p-avatar {
+    display: block;
+
+    .p-avatar {
+      width: 100px;
+      height: 100px;
+    }
   }
 }

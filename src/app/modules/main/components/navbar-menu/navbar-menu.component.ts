@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
-import {AuthService} from "@core/http";
+import {DataService} from "@core/http";
+import {User} from "@core/models";
 
 @Component({
   selector: 'ng-navbar-menu',
@@ -27,7 +28,15 @@ export class NavbarMenuComponent implements OnInit {
       routerLink: '/tutorial'
     }
   ];
+  user: User;
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit() {
+    this.user = this.dataService.user;
+    this.dataService.profileUpdated$.subscribe(({avatar}) => {
+      this.user.avatar = avatar;
+    })
   }
 }

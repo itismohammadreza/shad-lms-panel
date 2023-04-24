@@ -5,6 +5,8 @@ export const RequestsConfig: RequestConfig[] = [
   {pathTemplate: '/panel/logout/', method: 'GET', loading: true, success: true, failure: true, catch: false},
   {pathTemplate: '/panel/profile/', method: 'GET', loading: true, success: false, failure: true, catch: false},
   {pathTemplate: '/panel/profile/', method: 'PUT', loading: true, success: true, failure: true, catch: false},
+  {pathTemplate: '/panel/avatar/*', method: 'GET', loading: true, success: false, failure: true, catch: false},
+  {pathTemplate: '/panel/avatar/*', method: 'POST', loading: true, success: false, failure: true, catch: false},
   {pathTemplate: '/panel/users/', method: 'POST', loading: true, success: true, failure: true, catch: false},
   {pathTemplate: '/panel/users/', method: 'GET', loading: true, success: false, failure: true, catch: false},
   {pathTemplate: '/panel/dashboard-objects-detail/', method: 'POST', loading: true, success: false, failure: true, catch: false},

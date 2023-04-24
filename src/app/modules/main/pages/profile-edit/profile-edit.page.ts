@@ -16,18 +16,30 @@ export class ProfileEditPage implements OnInit {
     password: new FormControl(null),
     phone_number: new FormControl(null, [Validators.required]),
   })
+  avatar: any;
 
-  constructor(private authService: AuthService,
-              private dataService: DataService) {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    const user = this.authService.user;
-    this.form.patchValue(user)
+    const user = this.dataService.user;
+    this.form.patchValue(user);
+    this.avatar = user.avatar;
   }
 
-  onSelectImage(event: any) {
-
+  async onSelectImage(event: any) {
+    try {
+      const file = event.target.files[0];
+      await this.dataService.uploadAvatar(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.avatar = e.target.result;
+        this.dataService.profileUpdated$.next({avatar: this.avatar})
+      }
+      reader.readAsDataURL(file);
+    } catch {
+      this.avatar = this.dataService.user.avatar;
+    }
   }
 
   async onSubmit() {

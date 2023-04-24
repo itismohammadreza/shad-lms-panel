@@ -18,7 +18,7 @@ import {
   User,
   UserFilter
 } from "@core/models";
-import {map} from "rxjs";
+import {map, Subject} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
@@ -28,6 +28,8 @@ export class DataService extends ApiService {
   constructor() {
     super()
   }
+
+  profileUpdated$ = new Subject<Partial<User>>();
 
   private _user: User;
 

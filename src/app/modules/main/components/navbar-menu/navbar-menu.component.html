@@ -7,7 +7,7 @@
                    iconPos="right"
                    label="کاربران"
                    routerLink="/users"></ng-button>
-        <p-avatar role="button" image="assets/images/avatar.png" routerLink="/profile" size="large"
+        <p-avatar role="button" [image]="user.avatar" routerLink="/profile" size="large"
                   shape="circle"></p-avatar>
       </div>
     </ng-template>

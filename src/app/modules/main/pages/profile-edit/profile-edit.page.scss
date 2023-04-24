@@ -1,0 +1,10 @@
+:host ::ng-deep {
+  p-avatar {
+    display: block;
+
+    .p-avatar {
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+}

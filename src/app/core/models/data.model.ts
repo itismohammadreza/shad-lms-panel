@@ -25,6 +25,7 @@ export interface User {
   permission: string;
   status: boolean;
   last_visit?: string;
+  avatar?: string;
 }
 
 
