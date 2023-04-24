@@ -95,6 +95,7 @@ export class DashboardPage implements OnInit {
     this.usage = await this.dataService.getUsage()
     this.usageForm.reset();
     this.usageFilterEnabled = false;
+    this.mapValue = null;
   }
 
   bothDatesValidator(group: FormGroup) {
