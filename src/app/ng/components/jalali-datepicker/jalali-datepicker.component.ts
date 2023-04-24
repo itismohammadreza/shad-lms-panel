@@ -54,7 +54,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() hint: string;
   @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean = true;
-  @Input() icon: string = 'pi pi-calendar';
+  @Input() icon: string;
   @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
@@ -73,7 +73,7 @@ export class JalaliDatepickerComponent implements OnInit, ControlValueAccessor {
   @Input() inline: boolean;
   @Input() showOtherMonths: boolean = true;
   @Input() selectOtherMonths: boolean;
-  @Input() showIcon: boolean;
+  @Input() showIcon: boolean = true;
   @Input() showOnFocus: boolean = true;
   @Input() showWeek: boolean;
   @Input() datePickerIcon: string = 'pi pi-calendar';
