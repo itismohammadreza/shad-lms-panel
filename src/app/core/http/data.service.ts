@@ -19,6 +19,7 @@ import {
   UserFilter
 } from "@core/models";
 import {map} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,16 @@ import {map} from "rxjs";
 export class DataService extends ApiService {
   constructor() {
     super()
+  }
+
+  private _user: User;
+
+  set user(user: User) {
+    this._user = user;
+  }
+
+  get user() {
+    return this._user;
   }
 
   get chartOptions() {
@@ -123,16 +134,31 @@ export class DataService extends ApiService {
     return result;
   }
 
+  getProfile() {
+    return this._get<User>('profile').toPromise();
+  }
+
+  editProfile(data: User) {
+    return this._put<User>('profile', data).toPromise();
+  }
+
+  downloadAvatar(userId: string) {
+    return this._get<HttpResponse<any>>(`avatar/${userId}`, {
+      observe: 'response',
+      responseType: 'blob'
+    }).toPromise();
+  }
+
+  uploadAvatar(file: File) {
+    return this._post<any>(`avatar/${this.user.id}`, file).toPromise();
+  }
+
   getUsers(filter?: UserFilter) {
     return this._get<User[]>('users', {params: {...filter}}).toPromise();
   }
 
   addUser(data: User) {
     return this._post<{ user: User }>('users', data).toPromise();
-  }
-
-  editProfile(data: User) {
-    return this._put<User>('profile', data).toPromise();
   }
 
   getGradeCount(type: EntityType) {

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OverlayService} from "@ng/services";
-import {AuthService} from "@core/http";
+import {AuthService, DataService} from "@core/http";
 import {User} from "@core/models";
 
 @Component({
@@ -12,11 +12,12 @@ export class ProfilePage implements OnInit {
   user: User;
 
   constructor(private overlayService: OverlayService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.user = this.authService.user;
+    this.user = this.dataService.user;
   }
 
   async logout() {

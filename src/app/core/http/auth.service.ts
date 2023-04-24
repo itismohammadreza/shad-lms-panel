@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '@core/http';
 import {LoginCredentials, User} from "@core/models";
 import {Router} from "@angular/router";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
@@ -11,25 +12,11 @@ export class AuthService extends ApiService {
     super();
   }
 
-  private _user: User;
-
-  set user(user: User) {
-    this._user = user;
-  }
-
-  get user() {
-    return this._user;
-  }
-
   login(data: LoginCredentials) {
     return this._post<{ token: string }>('login', data).toPromise().then(res => {
       localStorage.setItem('token', res.token);
       return res
     });
-  }
-
-  getProfile() {
-    return this._get<User>('profile').toPromise();
   }
 
   logout() {

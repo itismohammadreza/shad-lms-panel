@@ -1,5 +1,5 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthService} from "@core/http";
+import {DataService} from "@core/http";
 
 @Directive({
   selector: '[ngPermission]'
@@ -9,11 +9,11 @@ export class PermissionDirective implements OnInit {
 
   constructor(private templateRef: TemplateRef<any>,
               private vcRef: ViewContainerRef,
-              private authService: AuthService) {
+              private dataService: DataService) {
   }
 
   ngOnInit() {
-    if (this.authService.user.permission != this.ngPermission) {
+    if (this.dataService.user.permission != this.ngPermission) {
       this.vcRef.clear();
     } else {
       this.vcRef.createEmbeddedView(this.templateRef);
