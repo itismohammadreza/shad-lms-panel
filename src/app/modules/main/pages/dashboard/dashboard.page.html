@@ -8,6 +8,7 @@
           <ng-dropdown formControlName="grade"
                        class="col-sm-6 col-md-4 col-xl mb-2"
                        label="مقطع"
+                       [filter]="true"
                        [options]="grades"
                        optionLabel="title"
                        optionValue="id">
@@ -162,12 +163,14 @@
                   formControlName="school_type"
                   class="mt-3"
                   label="نوع مدرسه"
+                  [filter]="true"
                   [options]="schoolTypes">
                 </ng-dropdown>
                 <ng-dropdown
                   formControlName="grade"
                   class="mt-3"
                   label="مقطع"
+                  [filter]="true"
                   [options]="grades"
                   optionLabel="title"
                   optionValue="id">

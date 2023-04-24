@@ -15,6 +15,7 @@
     [ngClass]="{'col-sm-6 col-md-6 col-xl mb-2': layout == 'responsive','mt-3':layout == 'fluid'}"
     [options]="districts"
     optionLabel="title"
+    [filter]="true"
     optionValue="district_id"
     label="منطقه"
     [disabled]="districtsLoading || !form.get('province_id').value">
