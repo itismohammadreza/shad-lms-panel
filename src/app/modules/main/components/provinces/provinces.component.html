@@ -9,7 +9,7 @@
     [filter]="true"
     [disabled]="districtsLoading"
     [icon]="districtsLoading ? 'pi pi-spin pi-spinner' : null"
-    (onChange)="onProvinceChange($event)">
+    (onChange)="_onProvinceChange($event)">
   </ng-dropdown>
   <ng-dropdown
     formControlName="district_id"
