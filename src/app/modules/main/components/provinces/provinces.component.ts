@@ -29,20 +29,25 @@ export class ProvincesComponent implements OnInit {
   }
 
   async _onProvinceChange(event: any) {
+    const provinceControl = this.form.get('province_id');
+    const districtControl = this.form.get('district_id');
     if (!event.value) {
-      this.form.get('district_id').setValue(null);
+      districtControl.setValue(null, {emitEvent: false});
       this.districts = [];
       return
     }
     try {
       this.districtsLoading = true;
-      this.form.get('district_id').setValue(null);
+      districtControl.setValue(null, {emitEvent: false});
       this.districts = await this.dataService.getDistricts(event.value);
       this.districtsLoading = false;
       this.onProvinceChange.emit(event.value)
       this.cd.detectChanges();
     } catch {
+      provinceControl.setValue(null, {emitEvent: false});
+      districtControl.setValue(null, {emitEvent: false});
       this.districtsLoading = false;
+      throw Error();
     }
   }
 
