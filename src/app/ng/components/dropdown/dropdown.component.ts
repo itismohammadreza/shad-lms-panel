@@ -94,7 +94,7 @@ export class DropdownComponent implements OnInit, AfterViewInit, AfterContentIni
   @Input() dropdownIcon: string = 'pi pi-chevron-down';
   @Input() autoDisplayFirst: boolean = false;
   @Input() group: boolean;
-  @Input() showClear: boolean;
+  @Input() showClear: boolean = true;
   @Input() baseZIndex: number = 1000;
   @Input() autoZIndex: boolean = true;
   @Input() showTransitionOptions: string = '.12s cubic-bezier(0, 0, 0.2, 1)';
