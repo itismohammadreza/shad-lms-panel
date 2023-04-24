@@ -27,10 +27,6 @@ export interface User {
   last_visit?: string;
 }
 
-export interface UserFilter {
-  sort?: string;
-  search_text?: string;
-}
 
 export interface Province {
   province_id: number;
@@ -113,7 +109,7 @@ export interface UsageFilter {
   gender_id?: Gender;
   province_id?: number;
   district_id?: number;
-  school_type?: 'Governmental' | '';
+  school_type?: number;
   school_id?: number;
   school_gender?: SchoolGender;
 }

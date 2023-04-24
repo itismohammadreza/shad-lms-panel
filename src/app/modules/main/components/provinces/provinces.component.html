@@ -20,7 +20,7 @@
     [filter]="true"
     optionValue="district_id"
     label="منطقه"
-    [disabled]="districtsLoading || !form.get('province_id').value"
+    [disabled]="districtsLoading"
     (onChange)="_onDistrictChange($event)">
   </ng-dropdown>
 </form>

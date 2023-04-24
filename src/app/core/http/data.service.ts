@@ -111,6 +111,16 @@ export class DataService extends ApiService {
     return [{label: 'پسرانه', value: 1}, {label: 'دخترانه', value: 2}, {label: 'مختلط', value: 3}];
   }
 
+  async getChartDataSet(list: any) {
+    const provinces = await this.getProvinces();
+    const result = Array(provinces.length).fill(null);
+    list.forEach((av, index) => {
+      const prIndex = provinces.findIndex(p => p.province_id == +av._id);
+      result[prIndex] = av.count;
+    })
+    return result;
+  }
+
   getUsers(filter?: UserFilter) {
     return this._get<User[]>('users', {params: {...filter}}).toPromise();
   }
@@ -163,15 +173,5 @@ export class DataService extends ApiService {
 
   getGrades() {
     return this._get<Item[]>('grades', {params: {limit: 50, offset: 0}}).toPromise();
-  }
-
-  async getChartDataSet(list: any) {
-    const provinces = await this.getProvinces();
-    const result = Array(provinces.length).fill(null);
-    list.forEach((av, index) => {
-      const prIndex = provinces.findIndex(p => p.province_id == +av._id);
-      result[prIndex] = av.count;
-    })
-    return result;
   }
 }
