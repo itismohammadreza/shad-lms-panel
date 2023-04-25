@@ -38,9 +38,11 @@ import {StatusComponent} from "@ng/components/status/status.component";
 import {LoadingContainerComponent} from "@ng/components/loading-container/loading-container.component";
 import {IranMapComponent} from "@ng/components/iran-map/iran-map.component";
 import {InputPasswordComponent} from "@ng/components/input-password/input-password.component";
+import {AutoCompleteComponent} from "@ng/components/auto-complete/auto-complete.component";
 
 export const COMPONENTS: Type<any>[] = [
   /***************************** FORM *************************/
+  AutoCompleteComponent,
   CheckboxComponent,
   DropdownComponent,
   JalaliPickerBaseComponent,

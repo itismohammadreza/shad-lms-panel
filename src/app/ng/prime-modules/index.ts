@@ -1,6 +1,6 @@
 import {Type} from "@angular/core";
 /***************************** FORMS *****************************/
-// import {AutoCompleteModule} from 'primeng/autocomplete';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 // import {CalendarModule} from 'primeng/calendar';
 // import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {CheckboxModule} from 'primeng/checkbox';
@@ -121,7 +121,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 export const MODULES: Type<any>[] = [
   /***************************** FORMS *****************************/
-  // AutoCompleteModule,
+  AutoCompleteModule,
   // CalendarModule,
   // CascadeSelectModule,
   CheckboxModule,
