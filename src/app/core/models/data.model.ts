@@ -69,7 +69,7 @@ export interface GradeCount {
   elementary?: number;
   middle?: number;
   high?: number;
-  was?: number;
+  ws?: number;
   tap?: number;
 }
 

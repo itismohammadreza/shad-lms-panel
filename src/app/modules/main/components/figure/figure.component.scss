@@ -1,3 +1,10 @@
 .figure {
   border-radius: 1rem;
+  height: 100%;
+
+  &.figure-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
