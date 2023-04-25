@@ -56,11 +56,11 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.usageForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(res => {
       const {grade, school_id, ...others} = res;
       this.mapValue = others.province_id;
-      this.loadSchools({
-        ...others,
-        gender_id: others.school_gender,
-        type_id: others.school_type
-      })
+      // this.loadSchools({
+      //   ...others,
+      //   gender_id: others.school_gender,
+      //   type_id: others.school_type
+      // })
     })
   }
 
