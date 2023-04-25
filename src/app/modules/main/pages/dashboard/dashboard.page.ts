@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MomentService, UtilsService} from "@ng/services";
-import {CountBar, District, ExamCount, Item, Province, School, SchoolFilter, TutorialCount, Usage} from "@core/models";
+import {CountBar, ExamCount, Item, School, SchoolFilter, TutorialCount, Usage} from "@core/models";
 import {ProvincesComponent} from "@modules/main/components/provinces/provinces.component";
 import {Subject, takeUntil} from "rxjs";
 
