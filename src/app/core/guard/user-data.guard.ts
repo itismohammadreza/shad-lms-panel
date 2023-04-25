@@ -12,12 +12,15 @@ export class UserDataGuard implements CanActivate {
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     try {
       const user = await this.dataService.getProfile();
-      const avatar = await this.dataService.downloadAvatar(user.id);
-      user.avatar = URL.createObjectURL(new Blob([avatar.body], {type: avatar.body.type}));
       this.dataService.user = user;
+      const avatar = await this.dataService.downloadAvatar(user.id);
+      this.dataService.user.avatar = URL.createObjectURL(new Blob([avatar.body], {type: avatar.body.type}));
       return true;
     } catch (e) {
-      return false;
+      if (e.status == 409) {
+        this.dataService.user.avatar = 'assets/images/avatar.png';
+        return true;
+      }
     }
   }
 }

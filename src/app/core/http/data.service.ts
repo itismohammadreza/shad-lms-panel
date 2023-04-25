@@ -152,7 +152,9 @@ export class DataService extends ApiService {
   }
 
   uploadAvatar(file: File) {
-    return this._post<any>(`avatar/${this.user.id}`, file).toPromise();
+    const formData = new FormData();
+    formData.append('file', file);
+    return this._post<any>(`avatar/${this.user.id}`, formData).toPromise();
   }
 
   getUsers(filter?: UserFilter) {
