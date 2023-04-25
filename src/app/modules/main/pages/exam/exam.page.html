@@ -42,8 +42,12 @@
       <p-card>
         <h5>آزمون</h5>
         <form [formGroup]="form" (ngSubmit)="onSubmitFilter()" class="form-row my-4">
-          <ng-dropdown formControlName="type" class="col-sm-6 col-md-4 col-xl mb-2"
-                       label="نوع آزمون"></ng-dropdown>
+          <ng-dropdown
+            formControlName="type"
+            class="col-sm-6 col-md-4 col-xl mb-2"
+            [options]="[{label:'تشریحی',value:'Descriptive'},{label:'تستی',value:'MultiChoice'}]"
+            label="نوع آزمون">
+          </ng-dropdown>
           <ng-dropdown formControlName="lesson_id" class="col-sm-6 col-md-4 col-xl mb-2" label="درس"></ng-dropdown>
           <ng-dropdown formControlName="field"
                        class="col-sm-6 col-md-4 col-xl mb-2"
