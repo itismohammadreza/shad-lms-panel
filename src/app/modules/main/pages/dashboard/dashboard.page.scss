@@ -3,6 +3,10 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+.col-lg-4 ng-button ::ng-deep button {
+  border-radius: 2rem;
+}
+
 .iran-map ::ng-deep {
   .p-card-body {
     overflow: hidden;
