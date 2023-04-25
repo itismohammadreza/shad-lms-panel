@@ -27,11 +27,15 @@ import {Subject, takeUntil} from "rxjs";
 import {NgAddon, NgInputType, NgLabelPosition, NgValidation} from "@ng/models/forms";
 import {NgIconPosition, NgSize} from "@ng/models/offset";
 import {TemplateDirective} from "@ng/directives/template.directive";
+import {GlobalConfig} from "@core/global.config";
 
 @Component({
   selector: 'ng-auto-complete',
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.scss'],
+  host: {
+    '[style.display]': "'block'"
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -46,14 +50,14 @@ export class AutoCompleteComponent implements OnInit, AfterContentInit, ControlV
   @Input() filled: boolean;
   @Input() labelWidth: number;
   @Input() hint: string;
-  @Input() rtl: boolean;
+  @Input() rtl: boolean = GlobalConfig.rtl;
   @Input() showRequiredStar: boolean;
   @Input() icon: string;
-  @Input() labelPos: NgLabelPosition;
+  @Input() labelPos: NgLabelPosition = GlobalConfig.defaultLabelPos;
   @Input() iconPos: NgIconPosition = 'left';
   @Input() addon: NgAddon;
   @Input() validation: NgValidation;
-  @Input() inputSize: NgSize;
+  @Input() inputSize: NgSize = 'sm';
   @Input() disableConfigChangeEffect: boolean;
   // native properties
   @Input() suggestions: any[];

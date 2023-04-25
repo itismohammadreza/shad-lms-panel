@@ -34,7 +34,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   usage: Usage = {};
   fields: Item[] = [];
   grades: Item[] = [];
-  schools: School[] = [];
+  schools: any[] = [];
   examCount: ExamCount = {};
   homeworkCount: ExamCount = {};
   tutorialCount: TutorialCount = {};
@@ -61,6 +61,22 @@ export class DashboardPage implements OnInit, OnDestroy {
       //   gender_id: others.school_gender,
       //   type_id: others.school_type
       // })
+    })
+  }
+
+  searchSchools(event) {
+    this.schools = [...Array(10).keys()].map(item => event.query + '-' + item);
+  }
+
+  onShowSchoolDropdown(e) {
+    e.element.querySelector(".p-dropdown-items-wrapper").addEventListener('scroll', (ev) => {
+      const target = ev.target;
+      const ulEl = ev.target.querySelector('ul');
+      const reachEnd = ((target.scrollHeight - target.offsetHeight) - target.scrollTop) <= 100;
+      const loadMoreEl = `<li class="p-element p-dropdown-item-group p-disabled">لطفا صبر کنید...</li>`;
+      if (reachEnd) {
+        ulEl.insertAdjacentHTML('beforeend', loadMoreEl)
+      }
     })
   }
 
