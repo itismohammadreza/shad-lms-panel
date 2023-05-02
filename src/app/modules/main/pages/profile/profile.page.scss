@@ -1,10 +1,28 @@
 :host ::ng-deep {
+  .p-card-content {
+    font-size: 14px;
+  }
+
   p-avatar {
     display: block;
 
     .p-avatar {
       width: 100px;
       height: 100px;
+    }
+  }
+
+  .actions {
+    ng-button {
+      &:first-of-type button {
+        background-color: #D8FCDA;
+        color: #4CAF50;
+      }
+
+      &:last-of-type button {
+        background-color: rgba(255, 4, 4, 0.05);
+        color: #ED6A5A;
+      }
     }
   }
 }
