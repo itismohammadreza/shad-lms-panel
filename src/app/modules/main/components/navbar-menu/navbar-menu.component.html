@@ -1,5 +1,8 @@
 <div class="main-content">
   <p-menubar [model]="items" class="fixed-top">
+    <ng-template pTemplate="start">
+      <img class="logo" src="assets/images/logo.jpg" alt="Shad">
+    </ng-template>
     <ng-template pTemplate="end">
       <div class="d-flex align-items-center">
         <span class="ml-2">1.9.0</span>
