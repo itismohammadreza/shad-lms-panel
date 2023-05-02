@@ -47,7 +47,8 @@ export class DataService extends ApiService {
         legend: {
           labels: {
             font: {family: 'IRANSans'},
-          }
+          },
+          position: 'bottom'
         },
         tooltip: {
           titleFont: {
