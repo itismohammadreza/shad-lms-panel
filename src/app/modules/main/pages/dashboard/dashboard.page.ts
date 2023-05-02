@@ -44,7 +44,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   genders = this.dataService.genders;
   schoolGenders = this.dataService.schoolGenders;
   mapValue: string;
-  destroy$ = new Subject()
+  destroy$ = new Subject();
 
   constructor(private dataService: DataService,
               private momentService: MomentService,
@@ -53,42 +53,53 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadData();
-    this.usageForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(res => {
-      const {grade, school_id, ...others} = res;
-      this.mapValue = others.province_id;
-      // this.loadSchools({
-      //   ...others,
-      //   gender_id: others.school_gender,
-      //   type_id: others.school_type
-      // })
-    })
+    // this.usageForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(res => {
+    // const {grade, school_id, ...others} = res;
+    // this.mapValue = others.province_id;
+    // this.loadSchools({
+    //   ...others,
+    //   gender_id: others.school_gender,
+    //   type_id: others.school_type
+    // })
+    // })
   }
 
   searchSchools(event) {
-    this.schools = [...Array(10).keys()].map(item => event.query + '-' + item);
+    console.log(event)
+    this.schools = [];
+    // this.loadSchools(1)
   }
 
-  onShowSchoolDropdown(e) {
-    e.element.querySelector(".p-dropdown-items-wrapper").addEventListener('scroll', (ev) => {
+  onShowSchoolsPanel(e) {
+    let isLoading = false;
+    let offset = 0;
+    e?.overlay.querySelector(".p-autocomplete-panel").addEventListener('scroll', async (ev) => {
       const target = ev.target;
       const ulEl = ev.target.querySelector('ul');
       const reachEnd = ((target.scrollHeight - target.offsetHeight) - target.scrollTop) <= 100;
-      const loadMoreEl = `<li class="p-element p-dropdown-item-group p-disabled">لطفا صبر کنید...</li>`;
+      const loadMoreEl = `<li class="p-autocomplete-item-group">لطفا صبر کنید...</li>`;
       if (reachEnd) {
-        ulEl.insertAdjacentHTML('beforeend', loadMoreEl)
+        if (isLoading) {
+          return
+        }
+        isLoading = true;
+        ulEl.insertAdjacentHTML('beforeend', loadMoreEl);
+        offset++;
+        // await this.loadSchools(offset)
       }
     })
   }
 
-  async loadSchools(filter: SchoolFilter) {
-    const {gender_id, province_id, district_id, type_id} = filter;
-    filter = {gender_id, province_id, district_id, type_id};
-    Object.entries(filter).forEach(([key, value]) => {
-      if (value == null) {
-        delete filter[key]
-      }
-    })
-    this.schools = await this.dataService.getSchools(filter);
+  async loadSchools(searchText: string, offset: number) {
+    const dirtyControls = this.utilsService.getDirtyControls(this.usageForm);
+    let filter: SchoolFilter = {};
+    if (dirtyControls) {
+      const {grade, school_id, ...others} = dirtyControls;
+      filter = {...others, gender_id: others.school_gender, type_id: others.school_type};
+    }
+    filter.search_text = searchText;
+    filter.offset = offset;
+    return await this.dataService.getSchools(filter);
   }
 
   async loadData() {
@@ -161,5 +172,9 @@ export class DashboardPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next(true)
     this.destroy$.complete()
+  }
+
+  onUsageProvinceChange(event: any) {
+    this.mapValue = event;
   }
 }

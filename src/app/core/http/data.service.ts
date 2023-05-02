@@ -200,7 +200,7 @@ export class DataService extends ApiService {
   }
 
   getSchools(filter?: SchoolFilter) {
-    return this._get<School[]>('schools', {params: {...filter}}).toPromise();
+    return this._get<School[]>('schools', {params: {...filter, limit: 50}}).toPromise();
   }
 
   getFields() {

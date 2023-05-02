@@ -105,8 +105,8 @@ export interface SchoolFilter {
   province_id?: number;
   district_id?: number;
   type_id?: number;
-  limit?: number;
   offset?: number;
+  search_text?: string;
 }
 
 export interface UserFilter {

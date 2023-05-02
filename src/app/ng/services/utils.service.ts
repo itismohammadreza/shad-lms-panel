@@ -108,7 +108,7 @@ export class UtilsService {
     return (res !== null)
   };
 
-  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object'): {} {
+  getDirtyControls(form: FormGroup, type: 'object' | 'array' | 'names' = 'object'): any {
     const kv = Object.entries(form.controls).filter(val => val[1].dirty && val[1].value);
     const result = {
       object: kv.reduce((accum, val) => Object.assign(accum, {[val[0]]: val[1].value}), {}),
