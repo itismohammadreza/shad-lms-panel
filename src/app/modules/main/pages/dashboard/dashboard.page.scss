@@ -26,11 +26,14 @@ h1, h2, h3, h4, h5, h6 {
       z-index: 200;
     }
 
-    .border {
+    &.box {
       border-radius: 8px;
+      border: 3px solid rgba(181, 181, 181, 0.1);
       @include media-breakpoint-up(md) {
         max-width: 300px;
-        margin: auto;
+        &:last-child {
+          margin-right: auto;
+        }
       }
     }
   }

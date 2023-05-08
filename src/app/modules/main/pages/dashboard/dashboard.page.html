@@ -6,34 +6,34 @@
               [formGroup]="countBarForm"
               (ngSubmit)="onSubmitCountBarFilter()">
           <ng-dropdown formControlName="grade"
-                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       class="col-sm-6 col-md-4 col-xl-1 mb-2"
                        label="مقطع"
                        [filter]="true"
                        [options]="grades"
                        optionLabel="title"
                        optionValue="id">
           </ng-dropdown>
-          <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl mb-2" label="جنسیت"
+          <ng-dropdown formControlName="gender_id" class="col-sm-6 col-md-4 col-xl-1 mb-2" label="جنسیت"
                        [options]="genders"></ng-dropdown>
+          <ng-dropdown class="col-sm-6 col-md-4 col-xl-1 mb-2" label="پایه"></ng-dropdown>
           <ng-dropdown formControlName="field"
-                       class="col-sm-6 col-md-4 col-xl mb-2"
+                       class="col-sm-6 col-md-4 col-xl-1 mb-2"
                        [options]="fields"
                        [filter]="true"
                        optionLabel="title"
                        optionValue="id"
                        label="رشته">
           </ng-dropdown>
-          <ng-dropdown class="col-sm-6 col-md-4 col-xl mb-2" label="پایه"></ng-dropdown>
 
-          <div class="col-md-8 col-xl-3" ng-provinces [form]="countBarForm"></div>
+          <div class="col-md-8 col-xl-2" ng-provinces [form]="countBarForm"></div>
 
           <ng-jalali-datepicker formControlName="start_time" [showClear]="true"
-                                class="col-sm-6 col-md-4 col-xl mb-2"
+                                class="col-sm-6 col-md-4 col-xl-1 mb-2"
                                 label="از تاریخ"></ng-jalali-datepicker>
           <ng-jalali-datepicker formControlName="end_time" [showClear]="true"
-                                class="col-sm-6 col-md-4 col-xl mb-2"
+                                class="col-sm-6 col-md-4 col-xl-1 mb-2"
                                 label="تا تاریخ"></ng-jalali-datepicker>
-          <div class="d-flex align-items-center col-md-4 col-xl mb-2">
+          <div class="d-flex align-items-center col-md-4 col-xl-1 mr-auto mb-2">
             <ng-button
               type="submit"
               appearance="outlined"
@@ -147,8 +147,8 @@
       <p-card>
         <h5 class="mb-5">میزان استفاده مدارس از LMS</h5>
         <div class="row">
-          <div class="order-1 mb-4 col-md-6 col-lg-3">
-            <div class="border bg-white p-4">
+          <div class="box order-1 mb-4 col-md-6 col-lg-3">
+            <div class="bg-white p-4">
               <h6>فیلتر</h6>
               <form [formGroup]="usageForm" (ngSubmit)="onSubmitUsageFilter()">
                 <ng-dropdown
@@ -221,7 +221,7 @@
               </form>
             </div>
           </div>
-          <div class="order-3 order-md-4 order-lg-2 col-md-12 col-lg-6">
+          <div class="order-3 m-auto order-md-4 order-lg-2 col-md-12 col-lg-6">
             <ng-pinch-zoom overflow="visible">
               <ng-iran-map
                 [ngModel]="mapValue"
@@ -231,8 +231,8 @@
               </ng-iran-map>
             </ng-pinch-zoom>
           </div>
-          <div class="order-2 mb-4 order-lg-3 col-md-6 col-lg-3">
-            <div class="border bg-white p-5">
+          <div class="box order-2 mb-4 order-lg-3 col-md-6 col-lg-3">
+            <div class="bg-white p-5">
               <div class="text-center">
                 <h5 class="text-muted mb-4">مجموع‌ استفاده از LMS</h5>
                 <h1 class="mb-4">{{usage.total}}</h1>

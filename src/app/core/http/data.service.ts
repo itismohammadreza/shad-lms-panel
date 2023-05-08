@@ -65,24 +65,12 @@ export class DataService extends ApiService {
           ticks: {
             font: {family: 'IRANSans'},
           },
-          // ticks: {
-          //   color: '#495057'
-          // },
-          // grid: {
-          //   color: '#ebedef'
-          // }
         },
         y: {
           stacked: false,
           ticks: {
             font: {family: 'IRANSans'},
-          }
-          // ticks: {
-          //   color: '#495057'
-          // },
-          // grid: {
-          //   color: '#ebedef'
-          // }
+          },
         }
       }
     };
