@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExamCount, GradeCount, Item} from "@core/models";
 import {DataService} from "@core/http";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UtilsService} from "@ng/services";
-import {Chart} from "chart.js";
 
 @Component({
   selector: 'ng-exam',
