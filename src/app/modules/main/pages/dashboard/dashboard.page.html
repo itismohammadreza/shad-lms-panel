@@ -146,8 +146,8 @@
     <div class="col-12 mb-4 iran-map">
       <p-card>
         <h5 class="mb-5">میزان استفاده مدارس از LMS</h5>
-        <div class="row">
-          <div class="box order-1 mb-4 col-md-6 col-lg-3 ml-4">
+        <div class="row align-items-start">
+          <div class="box order-1 mb-4 col-md-6 col-lg-3 mr-4">
             <div class="bg-white p-4">
               <h6>فیلتر</h6>
               <form [formGroup]="usageForm" (ngSubmit)="onSubmitUsageFilter()">
@@ -231,33 +231,33 @@
               </ng-iran-map>
             </ng-pinch-zoom>
           </div>
-          <div class="box order-2 mb-4 order-lg-3 col-md-6 col-lg-3 mr-4">
+          <div class="box order-2 mb-4 order-lg-3 col-md-6 col-lg-3 ml-4 usage-result">
             <div class="bg-white p-5">
               <div class="text-center">
                 <h5 class="text-muted mb-4">مجموع‌ استفاده از LMS</h5>
                 <h1 class="mb-4">{{usage.total}}</h1>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded mb-4">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded mb-4">
                 <span>آزمون ها</span>
                 <span class="text-dark h5 mb-0">{{usage.exams | withComma}}</span>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded mb-4">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded mb-4">
                 <span>تکالیف</span>
                 <span class="text-dark h5 mb-0">{{usage.homeworks | withComma}}</span>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded mb-4">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded mb-4">
                 <span>درسنامه</span>
                 <span class="text-dark h5 mb-0">{{usage.tutorials | withComma}}</span>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded mb-4">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded mb-4">
                 <span>تعداد مدارس</span>
                 <span class="text-dark h5 mb-0">{{usage.schools | withComma}}</span>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded mb-4">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded mb-4">
                 <span>دخترانه</span>
                 <span class="text-dark h5 mb-0">{{usage.f_schools | withComma}}</span>
               </div>
-              <div class="d-flex align-items-center justify-content-between bg-light p-1 rounded">
+              <div class="d-flex align-items-center justify-content-between p-1 rounded">
                 <span>پسرانه</span>
                 <span class="text-dark h5 mb-0">{{usage.m_schools | withComma}}</span>
               </div>

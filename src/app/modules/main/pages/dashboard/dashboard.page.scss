@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-lg-4 ng-button ::ng-deep button {
   border-radius: 2rem;
-  border-color: #87A8E2;
+  color: #87A8E2;
   font-weight: bold;
 
   .p-button-label,
@@ -42,6 +42,11 @@ h1, h2, h3, h4, h5, h6 {
           margin-right: auto;
         }
       }
+
+      &.usage-result .rounded {
+        background-color: rgba(231, 231, 231, 0.08);
+      }
     }
+
   }
 }

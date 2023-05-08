@@ -44,6 +44,12 @@ export class HomeworkPage implements OnInit {
       labels: provinces.map(p => p.title),
       datasets: [
         {
+          label: 'همه',
+          type: 'bar',
+          backgroundColor: '#8CA6E9',
+          data: await this.dataService.getChartDataSum(this.count.chart_data)
+        },
+        {
           label: 'ایجاد شده',
           type: 'bar',
           backgroundColor: '#FDE9CC',
@@ -61,12 +67,6 @@ export class HomeworkPage implements OnInit {
           backgroundColor: '#F6C1BB',
           data: await this.dataService.getChartDataSet(this.count.chart_data.done)
         },
-        {
-          label: 'همه',
-          type: 'bar',
-          backgroundColor: '#8CA6E9',
-          data: await this.dataService.getChartDataSum(this.count.chart_data)
-        }
       ]
     };
   }

@@ -58,7 +58,7 @@ export class DataService extends ApiService {
           bodyFont: {
             family: 'IRANSans'
           },
-        }
+        },
       },
       scales: {
         x: {
@@ -116,11 +116,12 @@ export class DataService extends ApiService {
     return [{label: 'پسرانه', value: 1}, {label: 'دخترانه', value: 2}, {label: 'مختلط', value: 3}];
   }
 
-  async getChartDataSet(list: any) {
+  async getChartDataSet(list: any, key?: string) {
     const provinces = await this.getProvinces();
-    const result = Array(provinces.length).fill(null);
+    const result = Array(provinces.length).fill(0);
+    console.log(key, list)
     list.forEach((av, index) => {
-      const prIndex = provinces.findIndex(p => p.province_id == +av._id);
+      const prIndex = provinces.findIndex(p => p.province_id == av._id);
       result[prIndex] = av.count;
     })
     return result;
@@ -129,16 +130,17 @@ export class DataService extends ApiService {
   async getChartDataSum(obj: any) {
     const result = [];
     for (const key in obj) {
-      const array = obj[key];
+      const array = JSON.parse(JSON.stringify(obj[key]));
       array.forEach(item => {
-        if (!result.find(x => x._id == item._id)) {
+        const idx = result.findIndex(x => x._id == item._id);
+        if (idx == -1) {
           result.push(item)
         } else {
-          result.find(x => x._id == item._id).count += item.count;
+          result[idx].count += item.count;
         }
       })
     }
-    return this.getChartDataSet(result)
+    return await this.getChartDataSet(result)
   }
 
   getProfile() {
