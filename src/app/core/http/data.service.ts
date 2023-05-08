@@ -126,6 +126,21 @@ export class DataService extends ApiService {
     return result;
   }
 
+  async getChartDataSum(obj: any) {
+    const result = [];
+    for (const key in obj) {
+      const array = obj[key];
+      array.forEach(item => {
+        if (!result.find(x => x._id == item._id)) {
+          result.push(item)
+        } else {
+          result.find(x => x._id == item._id).count += item.count;
+        }
+      })
+    }
+    return this.getChartDataSet(result)
+  }
+
   getProfile() {
     return this._get<User>('profile').toPromise();
   }

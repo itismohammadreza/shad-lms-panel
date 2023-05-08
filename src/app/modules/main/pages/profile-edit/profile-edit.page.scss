@@ -1,10 +1,18 @@
 :host ::ng-deep {
-  p-avatar {
-    display: block;
+  .profile-wrapper {
+    max-width: 200px;
 
-    .p-avatar {
-      width: 9rem;
-      height: 9rem;
+    button {
+      background: #226597;
+    }
+
+    p-avatar {
+      display: block;
+
+      .p-avatar {
+        width: 9rem;
+        height: 9rem;
+      }
     }
   }
 }

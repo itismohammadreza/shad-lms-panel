@@ -3,10 +3,10 @@
     <div class="col-12">
       <p-card>
         <div class="row align-items-center text-center">
-          <h2 class="col-12 mb-5 text-sm-right">پروفایل</h2>
-          <div class="col-8 mx-auto col-sm-3 col-md-2 mb-4 mb-sm-0">
+          <h2 class="col-xl-1 mb-4 mb-lg-0 text-sm-right">پروفایل</h2>
+          <div class="col-sm-3 col-md-2 col-lg-4 mb-4 mb-sm-0 profile-wrapper mx-auto mx-xl-0">
             <p-avatar [image]="avatar" size="large" shape="circle"></p-avatar>
-            <ng-button (onClick)="filePicker.click()" class="mt-4" label="تغیر پروفایل"></ng-button>
+            <ng-button (onClick)="filePicker.click()" class="mt-4" label="تغیر عکس پروفایل"></ng-button>
             <input #filePicker class="p-sr-only" accept="image/*" (change)="onSelectImage($event)" type="file">
           </div>
           <div class="col-sm-8 col-md-9 col-xl-8">

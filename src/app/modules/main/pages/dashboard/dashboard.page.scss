@@ -7,6 +7,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-lg-4 ng-button ::ng-deep button {
   border-radius: 2rem;
+  border-color: #87A8E2;
+  font-weight: bold;
+
+  .p-button-label,
+  .p-button-icon {
+    color: #111111;
+  }
 }
 
 .iran-map ::ng-deep {

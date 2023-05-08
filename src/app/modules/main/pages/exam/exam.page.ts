@@ -47,21 +47,28 @@ export class ExamPage implements OnInit {
         {
           label: 'درحال برگزاری',
           type: 'bar',
-          backgroundColor: '#42A5F5',
+          backgroundColor: '#BBD3EA',
           data: await this.dataService.getChartDataSet(this.count.chart_data.available)
         },
         {
           label: 'ایجاد شده',
           type: 'bar',
-          backgroundColor: '#66BB6A',
+          backgroundColor: '#FDE9CC',
           data: await this.dataService.getChartDataSet(this.count.chart_data.corrected)
         },
         {
           label: 'انجام شده',
           type: 'bar',
-          backgroundColor: '#FFA726',
+          backgroundColor: '#F6C1BB',
           data: await this.dataService.getChartDataSet(this.count.chart_data.done)
-        }]
+        },
+        {
+          label: 'همه',
+          type: 'bar',
+          backgroundColor: '#8CA6E9',
+          data: await this.dataService.getChartDataSum(this.count.chart_data)
+        },
+      ]
     };
   }
 
